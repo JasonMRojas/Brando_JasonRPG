@@ -1,0 +1,11 @@
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Brando_Jason_RPGame.deps.json
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Brando_Jason_RPGame.runtimeconfig.json
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Brando_Jason_RPGame.runtimeconfig.dev.json
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Brando_Jason_RPGame.dll
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Brando_Jason_RPGame.pdb
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\Brando_Jason_RPGame.csprojAssemblyReference.cache
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\Brando_Jason_RPGame.csproj.CoreCompileInputs.cache
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\Brando_Jason_RPGame.AssemblyInfoInputs.cache
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\Brando_Jason_RPGame.AssemblyInfo.cs
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\Brando_Jason_RPGame.dll
+C:\Users\Jason Rojas\source\repos\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\Brando_Jason_RPGame.pdb
