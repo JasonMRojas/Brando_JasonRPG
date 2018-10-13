@@ -1,4 +1,5 @@
 ﻿using System;
+using Brando_Jason_RPGame.GameRunning;
 
 namespace Brando_Jason_RPGame
 {
@@ -6,7 +7,9 @@ namespace Brando_Jason_RPGame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MapGame game = new MapGame();
+
+            game.RunMapGame();
         }
     }
 }

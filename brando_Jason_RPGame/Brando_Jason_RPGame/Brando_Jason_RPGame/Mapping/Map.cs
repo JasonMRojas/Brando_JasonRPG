@@ -15,7 +15,7 @@ namespace Brando_Jason_RPGame.Mapping
         /// <summary>
         /// Holds the values in the map in an Array of Arrays. Its is basically a grid
         /// </summary>
-        public int[][] MapArrayOfArrays { get; private set; }
+        public int[][] MapArrayOfArrays { get; protected set; }
 
         /// <summary>
         /// Holds the height of the grid
@@ -33,12 +33,12 @@ namespace Brando_Jason_RPGame.Mapping
         /// <param name="width"></param>
         /// <param name="height"></param>
         /// <param name="character"></param>
-        public Map(int width, int height, PlayerCharacter character)
+        public Map(int width, int height)
         {
             this.Height = height;
             this.Width = width;
-            this.MapArrayOfArrays = BuildMapArrayEntirely(character);
-            this.MapArrayOfArrays[1][1] = character.Value;
+            this.MapArrayOfArrays = BuildMapArrayEntirely();
+            this.MapArrayOfArrays[1][1] = -2;
         }
 
         /// <summary>
@@ -48,9 +48,8 @@ namespace Brando_Jason_RPGame.Mapping
         /// <param name="newDronePosition"></param>
         public void UpdateDronePostion(int[] pDronePos, Drone newDronePosition)
         {
-            Tile previousTile = new Tile(false, false);
             this.MapArrayOfArrays[newDronePosition.Position[0]][newDronePosition.Position[1]] = newDronePosition.Value;
-            this.MapArrayOfArrays[pDronePos[0]][pDronePos[1]] = previousTile.Value;
+            this.MapArrayOfArrays[pDronePos[0]][pDronePos[1]] = Tile.Value;
         }
 
         /// <summary>
@@ -60,17 +59,16 @@ namespace Brando_Jason_RPGame.Mapping
         /// <param name="newCharacterPosition"></param>
         public void UpdateCharacterPostion(int[] pCharacterPos, PlayerCharacter newCharacterPosition)
         {
-            Tile previousTile = new Tile(false, false);
             if (this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] != -3
                 && this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] != -4
                 && this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] != -5)
             {
                 this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] = newCharacterPosition.Value;
-                this.MapArrayOfArrays[pCharacterPos[0]][pCharacterPos[1]] = previousTile.Value;
+                this.MapArrayOfArrays[pCharacterPos[0]][pCharacterPos[1]] = Tile.Value;
             }
             else
             {
-                this.MapArrayOfArrays[pCharacterPos[0]][pCharacterPos[1]] = previousTile.Value;
+                this.MapArrayOfArrays[pCharacterPos[0]][pCharacterPos[1]] = Tile.Value;
             }
 
         }
@@ -80,11 +78,11 @@ namespace Brando_Jason_RPGame.Mapping
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
-        private int[][] BuildMapArrayEntirely(PlayerCharacter character)
+        private int[][] BuildMapArrayEntirely()
         {
             do
             {
-                BuildMapGrid(character);
+                BuildMapGrid();
                 BuildMazeInGrid();
             } while (!IsValidMaze());
 
@@ -94,7 +92,7 @@ namespace Brando_Jason_RPGame.Mapping
         /// <summary>
         /// Carves the maze into the grid. Uses a robot to randomly do it
         /// </summary>
-        private void BuildMazeInGrid()
+        protected virtual void BuildMazeInGrid()
         {
             ConstructorDrone constructor = new ConstructorDrone();
             Random randomSeed = new Random();
@@ -104,7 +102,7 @@ namespace Brando_Jason_RPGame.Mapping
                 {
                     int randomSeedNumber = randomSeed.Next(0, 3);
                     constructor.Move(this);
-                    if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] != 2)
+                    if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] != ExitTile.Value)
                     {
                         if (!IsSurrounded(this.MapArrayOfArrays, constructor, 0))
                         {
@@ -112,13 +110,13 @@ namespace Brando_Jason_RPGame.Mapping
                         }
                         else
                         {
-                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = -1;
+                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = Wall.Value;
                         }
-                        if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] == -1 && IsSurrounded(this.MapArrayOfArrays, constructor, 0) && randomSeedNumber < 2)
+                        if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] == Wall.Value && IsSurrounded(this.MapArrayOfArrays, constructor, 0) && randomSeedNumber < ExitTile.Value)
                         {
                             this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = 0;
                         }
-                        if (IsNextTo(this.MapArrayOfArrays, constructor, 2))
+                        if (this.IsNextTo(this.MapArrayOfArrays, constructor, ExitTile.Value))
                         {
                             this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = 0;
                         }
@@ -138,7 +136,7 @@ namespace Brando_Jason_RPGame.Mapping
         /// <param name="constructor"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        private static bool IsSurrounded(int[][] mapMazeArray, ConstructorDrone constructor, int value)
+        protected static bool IsSurrounded(int[][] mapMazeArray, ConstructorDrone constructor, int value)
         {
             return mapMazeArray[constructor.Position[0] + 1][constructor.Position[1]] == value
                                 && mapMazeArray[constructor.Position[0]][constructor.Position[1] + 1] == value
@@ -153,13 +151,22 @@ namespace Brando_Jason_RPGame.Mapping
         /// <param name="constructor"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        private static bool IsNextTo(int[][] mapMazeArray, ConstructorDrone constructor, int value)
+        public bool IsNextTo(int[][] mapMazeArray, ConstructorDrone constructor, int value)
         {
             return mapMazeArray[constructor.Position[0] + 1][constructor.Position[1]] == value
                                 || mapMazeArray[constructor.Position[0]][constructor.Position[1] + 1] == value
                                 || mapMazeArray[constructor.Position[0]][constructor.Position[1] - 1] == value
                                 || mapMazeArray[constructor.Position[0] - 1][constructor.Position[1]] == value;
         }
+
+        public bool IsNextTo(int[][] mapMazeArray, int[] position, int value)
+        {
+            return mapMazeArray[position[0] + 1][position[1]] == value
+                                || mapMazeArray[position[0]][position[1] + 1] == value
+                                || mapMazeArray[position[0]][position[1] - 1] == value
+                                || mapMazeArray[position[0] - 1][position[1]] == value;
+        }
+
 
         /// <summary>
         /// Checks if a generic position is surrounded by a value
@@ -184,7 +191,6 @@ namespace Brando_Jason_RPGame.Mapping
         {
             // Loop over rows and then columns.
             bool isValid = false;
-            Tile currentTile = new Tile(false, false);
             TestDrone tester = new TestDrone();
             int moveCounter = 0;
             double xCounter = 0;
@@ -192,18 +198,17 @@ namespace Brando_Jason_RPGame.Mapping
             {
                 for (int j = 0; j < this.MapArrayOfArrays[i].Length - 1; j++)
                 {
-                    if (this.MapArrayOfArrays[i][j] == -1 && i != 0 && j != 0)
+                    if (this.MapArrayOfArrays[i][j] == Wall.Value && i != 0 && j != 0)
                     {
                         xCounter++;
                     }
                 }
             }
-            while (!currentTile.IsEndTile && moveCounter < (this.MapArrayOfArrays.Length * 5 * this.MapArrayOfArrays[0].Length * 5))
+            while (this.MapArrayOfArrays[tester.Position[0]][tester.Position[1]] != ExitTile.Value && moveCounter < (this.MapArrayOfArrays.Length * 5 * this.MapArrayOfArrays[0].Length * 5))
             {
                 tester.Move(this);
-                if (this.MapArrayOfArrays[tester.Position[0]][tester.Position[1]] == 2)
+                if (this.MapArrayOfArrays[tester.Position[0]][tester.Position[1]] == ExitTile.Value)
                 {
-                    currentTile.IsEndTile = true;
                     isValid = true;
                 }
                 moveCounter++;
@@ -214,10 +219,8 @@ namespace Brando_Jason_RPGame.Mapping
         /// <summary>
         /// Constructs a grid of walls at the size designated by the height and width
         /// </summary>
-        /// <param name="character"></param>
-        private void BuildMapGrid(PlayerCharacter character)
+        private void BuildMapGrid()
         {
-            Wall wall = new Wall();
             int[][] mapArray = new int[this.Height][];
             for (int i = 0; i < mapArray.Length; i++)
             {
@@ -225,20 +228,17 @@ namespace Brando_Jason_RPGame.Mapping
                 int[] row = new int[this.Width];
                 for (int j = 0; j < row.Length; j++)
                 {
-                    Tile tile = new Tile(false, false);
-                    if (i == character.Position[0] && j == character.Position[1])
+                    if (i == 1 && j == 1)
                     {
-                        tile.IsStartTile = true;
-                        row[j] = character.Value;
+                        row[j] = -2;
                     }
                     else if (j == row.Length - 2 && i == mapArray.Length - 2)
                     {
-                        tile.IsEndTile = true;
-                        row[j] = tile.Value;
+                        row[j] = ExitTile.Value;
                     }
                     else
                     {
-                        row[j] = wall.Value;
+                        row[j] = Wall.Value;
                     }
                 }
                 mapArray[i] = row;
@@ -251,7 +251,7 @@ namespace Brando_Jason_RPGame.Mapping
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
-        public string BuildMapDisplay(PlayerCharacter character)
+        public string BuildMapDisplay()
         {
             string mapDisplay = "";
             for (int i = 0; i < this.MapArrayOfArrays.Length; i++)
@@ -259,15 +259,14 @@ namespace Brando_Jason_RPGame.Mapping
                 int[] row = this.MapArrayOfArrays[i];
                 for (int j = 0; j < row.Length; j++)
                 {
-                    Wall wall = new Wall();
-                    Tile tile = new Tile(false, false);
-                    if (row[j] == wall.Value)
+                    if (row[j] == Wall.Value)
                     {
-                        mapDisplay += wall.Display;
+                        mapDisplay += Wall.Display;
                     }
-                    else if (row[j] == character.Value)
+
+                    else if (row[j] == -2)
                     {
-                        mapDisplay += character.Display;
+                        mapDisplay += "P";
                     }
                     else if (row[j] == -3)
                     {
@@ -281,17 +280,21 @@ namespace Brando_Jason_RPGame.Mapping
                     {
                         mapDisplay += "H";
                     }
-                    else if (row[j] == tile.Value || row[j] == 1 || row[j] == 2)
+                    else if (row[j] == CaveTile.Value)
                     {
-                        if (row[j] == 1)
-                        {
-                            tile.IsStartTile = true;
-                        }
-                        if (row[j] == 2)
-                        {
-                            tile.IsEndTile = true;
-                        }
-                        mapDisplay += tile.Display;
+                        mapDisplay += CaveTile.Display;
+                    }
+                    else if (row[j] == TownMapTile.Value)
+                    {
+                        mapDisplay += TownMapTile.Display;
+                    }
+                    else if (row[j] == Tile.Value)
+                    {
+                        mapDisplay += Tile.Display;
+                    }
+                    else if (row[j] == ExitTile.Value)
+                    {
+                        mapDisplay += ExitTile.Display;
                     }
 
                 }

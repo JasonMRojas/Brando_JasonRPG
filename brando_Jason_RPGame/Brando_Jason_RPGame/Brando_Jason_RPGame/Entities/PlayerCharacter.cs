@@ -28,7 +28,6 @@ namespace Brando_Jason_RPGame.Entities
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
             input = Console.ReadKey();
-            Wall wall = new Wall();
             int pX = this.Position[1];
             int pY = this.Position[0];
             int[] pCharacterPos = new int[2];
@@ -39,28 +38,28 @@ namespace Brando_Jason_RPGame.Entities
             {
                 case ConsoleKey.W:
                 case ConsoleKey.UpArrow:
-                    if (currentMap.MapArrayOfArrays[Position[0] - 1][Position[1]] != wall.Value)
+                    if (currentMap.MapArrayOfArrays[Position[0] - 1][Position[1]] != Wall.Value)
                     {
                         this.Position[0]--;
                     }
                     break;
                 case ConsoleKey.D:
                 case ConsoleKey.RightArrow:
-                    if (currentMap.MapArrayOfArrays[Position[0]][Position[1] + 1] != wall.Value)
+                    if (currentMap.MapArrayOfArrays[Position[0]][Position[1] + 1] != Wall.Value)
                     {
                         this.Position[1]++;
                     }
                     break;
                 case ConsoleKey.S:
                 case ConsoleKey.DownArrow:
-                    if (currentMap.MapArrayOfArrays[Position[0] + 1][Position[1]] != wall.Value)
+                    if (currentMap.MapArrayOfArrays[Position[0] + 1][Position[1]] != Wall.Value)
                     {
                         this.Position[0]++;
                     }
                     break;
                 case ConsoleKey.A:
                 case ConsoleKey.LeftArrow:
-                    if (currentMap.MapArrayOfArrays[Position[0]][Position[1] - 1] != wall.Value)
+                    if (currentMap.MapArrayOfArrays[Position[0]][Position[1] - 1] != Wall.Value)
                     {
                         this.Position[1]--;
                     }

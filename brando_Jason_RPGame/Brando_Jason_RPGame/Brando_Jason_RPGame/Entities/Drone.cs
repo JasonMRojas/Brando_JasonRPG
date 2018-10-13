@@ -19,8 +19,7 @@ namespace Brando_Jason_RPGame.Entities
         public virtual void Move(Map map)
         {
             Random random = new Random();
-            Wall wall = new Wall();
-            int nextDirection = random.Next(1, 9);
+            int nextDirection = random.Next(1, 11);
 
             switch (nextDirection)
             {
@@ -38,6 +37,7 @@ namespace Brando_Jason_RPGame.Entities
                         Position[0]--;
                     }
                     break;
+                case 9:
                 case 7:
                 case 5:
                 case 3:
@@ -46,6 +46,7 @@ namespace Brando_Jason_RPGame.Entities
                         Position[1]--;
                     }
                     break;
+                case 10:
                 case 8:
                 case 6:
                 case 4:

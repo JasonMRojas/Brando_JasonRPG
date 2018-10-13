@@ -4,16 +4,10 @@ using System.Text;
 
 namespace Brando_Jason_RPGame.Mapping
 {
-    public class Wall
+    public class Wall : Tile
     {
-        public string Display { get; }
+        public static new string Display { get => "X"; }
 
-        public int Value { get; }
-
-        public Wall()
-        {
-            Display = "X";
-            Value = -1;
-        }
+        public static new int Value { get => 1; }
     }
 }
