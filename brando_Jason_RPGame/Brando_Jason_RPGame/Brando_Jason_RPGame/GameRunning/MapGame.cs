@@ -38,12 +38,12 @@ namespace Brando_Jason_RPGame.GameRunning
                 Dictionary<int, CaveMap> caveMapStorage = new Dictionary<int, CaveMap>();
 
                 Random randomCaveNumberSeed = new Random();
-                int randomSeed = randomCaveNumberSeed.Next(2, width / 10);
+                int randomSeed = randomCaveNumberSeed.Next(2, width / 20);
                 for (int i = 0; i < randomSeed; i++)
                 {
                     double randomWidthSeed = randomCaveNumberSeed.NextDouble();
                     double randomHeightSeed = randomCaveNumberSeed.NextDouble();
-                    CaveMap caveMap = new CaveMap((int)(width * (randomWidthSeed + 1)), (int)(height * (randomHeightSeed + .5)));
+                    CaveMap caveMap = new CaveMap((int)(width * (randomWidthSeed + .5)), (int)(height * (randomHeightSeed + .25)));
                     CaveTile caveTile = new CaveTile();
                     caveTile.Position = FindTileOrEntitySpawn.StartingPostion(map, caveTile);
                     caveTile.AssociationNum = i + 1;
