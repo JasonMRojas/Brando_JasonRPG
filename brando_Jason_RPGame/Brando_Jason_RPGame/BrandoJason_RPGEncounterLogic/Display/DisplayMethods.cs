@@ -39,7 +39,11 @@ namespace BrandoJason_RPGEncounterLogic.Display
             {
                 Console.WriteLine(prompt);
             }
-            string input = Console.ReadLine();
+            string input = "";
+            while (input.Length == 0)
+            {
+                input = Console.ReadLine();
+            }
 
             return input;
         }
