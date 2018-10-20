@@ -1,4 +1,5 @@
 ﻿using System;
+using BrandoJason_RPGEncounterLogic.Character;
 
 namespace BrandoJason_RPGEncounterLogic
 {
@@ -6,7 +7,9 @@ namespace BrandoJason_RPGEncounterLogic
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            PlayerCharacter player = new PlayerCharacter("Sajor Nosaj");
+            player.LevelUp();
+            player.ViewStatus();
         }
     }
 }

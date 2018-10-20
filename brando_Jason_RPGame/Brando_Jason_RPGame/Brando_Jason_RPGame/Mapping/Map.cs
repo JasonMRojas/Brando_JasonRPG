@@ -104,21 +104,21 @@ namespace Brando_Jason_RPGame.Mapping
                     constructor.Move(this);
                     if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] != ExitTile.Value)
                     {
-                        if (!IsSurrounded(this.MapArrayOfArrays, constructor, 0))
+                        if (!IsSurrounded(this.MapArrayOfArrays, constructor, Tile.Value))
                         {
-                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = 0;
+                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = Tile.Value;
                         }
                         else
                         {
                             this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = Wall.Value;
                         }
-                        if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] == Wall.Value && IsSurrounded(this.MapArrayOfArrays, constructor, 0) && randomSeedNumber < ExitTile.Value)
+                        if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] == Wall.Value && IsSurrounded(this.MapArrayOfArrays, constructor, Tile.Value) && randomSeedNumber < 2)
                         {
-                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = 0;
+                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = Tile.Value;
                         }
                         if (this.IsNextTo(this.MapArrayOfArrays, constructor, ExitTile.Value))
                         {
-                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = 0;
+                            this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] = Tile.Value;
                         }
                     }
                     else
