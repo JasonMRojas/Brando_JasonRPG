@@ -10,7 +10,3 @@ namespace Brando_Jason_RPGame.Entities
         private string Name { get { return "Builder"; } }
     }
 }
-
-
-
-
