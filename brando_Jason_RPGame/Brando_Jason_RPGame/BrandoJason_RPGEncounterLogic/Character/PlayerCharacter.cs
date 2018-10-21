@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BrandoJason_RPGEncounterLogic.Display;
+using BrandoJason_RPGEncounterLogic.Monster;
 
 namespace BrandoJason_RPGEncounterLogic.Character
 {
@@ -18,6 +19,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
         public int Attack { get; set; }
         public int MagDefense { get; set; }
         public int MagAttack { get; set; }
+        public int Luck { get; set; }
         public int Exp { get; set; }
         public int Gold { get; set; }
         public int Level { get; set; }
@@ -59,6 +61,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
                 "Defense: " + this.Defense,
                 "Magic Attack: " + this.MagAttack,
                 "Magic Defense: " + this.MagDefense,
+                "Luck: " + this.Luck,
                 "Current Experience: " + this.Exp + "xp" + " | to next level " + (LevelingArray[this.Level] - this.Exp) + "xp",
                 "Gold: " + this.Gold
             };
@@ -66,7 +69,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
             DisplayMethods.DisplayInformation("Press any button to continue...");
         }
 
-        public void AddGold (int amountGold)
+        public void AddGold(int amountGold)
         {
             this.Gold += amountGold;
         }
@@ -89,8 +92,8 @@ namespace BrandoJason_RPGEncounterLogic.Character
             prompts.Add("Level: " + this.Level);
 
             Random randomLevelSeed = new Random();
-            int randomHPAddition = randomLevelSeed.Next(5, 10);
-            int randomMPAddition = randomLevelSeed.Next(5, 10);
+            int randomHPAddition = randomLevelSeed.Next(3, this.Luck / randomLevelSeed.Next(1, 33) + 3);
+            int randomMPAddition = randomLevelSeed.Next(2, this.Luck / randomLevelSeed.Next(1, 3) + 2);
             int count = 3;
             bool didLevelNineCount = false;
 
@@ -105,7 +108,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
                 prompts.Add("LEVEL UP!!!");
                 prompts.Add("New Level: " + (this.Level + 1));
                 prompts.Add($"HP: {this.MaxHP} + {randomHPAddition} = {(this.MaxHP + randomHPAddition)}");
-                prompts.Add($"HP: {this.MaxMP} + {randomMPAddition} = {(this.MaxHP + randomMPAddition)}");
+                prompts.Add($"MP: {this.MaxMP} + {randomMPAddition} = {(this.MaxMP + randomMPAddition)}");
 
                 prompts.Add($"You have {count} stats to allot: ");
                 prompts.Add($"(1) Attack: {this.Attack}");
@@ -113,8 +116,9 @@ namespace BrandoJason_RPGEncounterLogic.Character
                 prompts.Add($"(3) Magic Attack: {this.MagAttack}");
                 prompts.Add($"(4) Magic Defense: {this.MagDefense}");
                 prompts.Add($"(5) Stamina: {this.MaxStamina}");
+                prompts.Add($"(6) Luck: {this.Luck}");
                 prompts.Add("");
-                prompts.Add("Player input (1,2,3,4,5): ");
+                prompts.Add("Player input (1,2,3,4,5,6): ");
 
 
                 string input;
@@ -122,7 +126,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
                 {
                     input = DisplayMethods.DisplayInformation(prompts, true);
                     input = input.Substring(0, 1);
-                    if (input == "1" || input == "2" || input == "3" || input == "4" || input == "5")
+                    if (input == "1" || input == "2" || input == "3" || input == "4" || input == "5" || input == "6")
                     {
                         break;
                     }
@@ -149,6 +153,9 @@ namespace BrandoJason_RPGEncounterLogic.Character
                         this.MaxStamina++;
                         this.CurrentStamina++;
                         break;
+                    case "6":
+                        this.Luck++;
+                        break;
                 }
                 count--;
                 if (count < 1)
@@ -159,14 +166,31 @@ namespace BrandoJason_RPGEncounterLogic.Character
                     this.CurrentHP += randomHPAddition;
                     this.MaxMP += randomMPAddition;
                     this.CurrentMP += randomMPAddition;
-                    randomHPAddition = randomLevelSeed.Next(1, 10);
-                    randomMPAddition = randomLevelSeed.Next(1, 10);
+                    randomHPAddition = randomLevelSeed.Next(3, this.Luck / randomLevelSeed.Next(1, 3) + 3);
+                    randomMPAddition = randomLevelSeed.Next(2, this.Luck / randomLevelSeed.Next(1, 3) + 2);
                 }
                 prompts.Clear();
                 Console.Clear();
             }
             DisplayMethods.DisplayInformation("Finished Leveling");
             Console.ReadLine();
+        }
+
+        public void PhysicalAttack(Normals monster)
+        {
+            int dealtDamage = this.Attack - monster.Defense;
+            if (dealtDamage < 0)
+            {
+                dealtDamage = 0;
+            }
+            monster.CurrentHP -= dealtDamage;
+            List<string> prompts = new List<string>()
+            {
+                $"{this.Name} Punched the {monster.Name}",
+                $"You dealt {dealtDamage} dmg!!!",
+                $"The {monster.Name} trembles... probably..."
+            };
+            DisplayMethods.DisplayInformation(prompts);
         }
     }
 }

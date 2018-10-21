@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Brando_Jason_RPGame.Entities;
 using Brando_Jason_RPGame.Mapping;
+using BrandoJason_RPGEncounterLogic;
 
 namespace Brando_Jason_RPGame.GameRunning
 {
@@ -18,7 +19,7 @@ namespace Brando_Jason_RPGame.GameRunning
         {
             PlayerCharacter player = new PlayerCharacter("IRRELEVANT");
             bool newMap = false;
-            int height = 12, width = 50;
+            int height = 8, width = 20;
             do
             {
                 player.Position[0] = 1;
@@ -35,21 +36,27 @@ namespace Brando_Jason_RPGame.GameRunning
                 Map map = new Map(width, height);
                 TownMap townMap = new TownMap(width, height);
 
+                NormalMonster slime = new NormalMonster(map);
+
+                slime.Position = FindTileOrEntitySpawn.StartingPostion(map, slime);
+
+                entityPile.Add(slime);
                 Dictionary<int, CaveMap> caveMapStorage = new Dictionary<int, CaveMap>();
 
                 Random randomCaveNumberSeed = new Random();
-                int randomSeed = randomCaveNumberSeed.Next(2, width / 20);
+                int randomSeed = randomCaveNumberSeed.Next(0, width / 10);
                 for (int i = 0; i < randomSeed; i++)
                 {
-                    double randomWidthSeed = randomCaveNumberSeed.NextDouble();
-                    double randomHeightSeed = randomCaveNumberSeed.NextDouble();
-                    CaveMap caveMap = new CaveMap((int)(width * (randomWidthSeed + .5)), (int)(height * (randomHeightSeed + .25)));
+                    double randomWidthSeed = randomCaveNumberSeed.Next(2, 4);
+                    double randomHeightSeed = randomCaveNumberSeed.Next(1, 1);
+                    CaveMap caveMap = new CaveMap((int)(width / (randomWidthSeed)), (int)(height / (randomHeightSeed)));
                     CaveTile caveTile = new CaveTile();
                     caveTile.Position = FindTileOrEntitySpawn.StartingPostion(map, caveTile);
                     caveTile.AssociationNum = i + 1;
                     specialTilePile.Add(caveTile);
                     caveMapStorage.Add(i + 1, caveMap);
                 }
+
 
                 currentTownMapTile.Position = FindTileOrEntitySpawn.StartingPostion(map, currentTownMapTile);
 
@@ -81,42 +88,68 @@ namespace Brando_Jason_RPGame.GameRunning
                     newMap = RunMapGameLoop(map, entityPile, specialTilePile);
                     isTownMap = false;
                     isCaveMap = false;
-                    if (IsColliding.IsCurrentlyColliding(currentTownMapTile, player))
-                    {
-                        endTile.Position[0] = 1;
-                        endTile.Position[1] = 1;
-                        player.Position[0] = 1;
-                        player.Position[1] = 2;
-                        townMap.MapArrayOfArrays[1][2] = player.Value;
-                        townMap.MapArrayOfArrays[1][1] = ExitTile.Value;
-                        townMap.Display = townMap.BuildMapDisplay();
-                        newMap = RunMapGameLoop(townMap, entityPile, specialTilePile);
-                        isTownMap = true;
-                        player.Position[0] = currentTownMapTile.Position[0];
-                        player.Position[1] = currentTownMapTile.Position[1] + 1;
-                    }
 
-                    foreach (Tile caveTile in specialTilePile)
+                    foreach (Tile tile in specialTilePile)
                     {
-                        if (caveTile.GetType() == typeof(CaveTile) && IsColliding.IsCurrentlyColliding(caveTile, player))
+                        if (tile.GetType() == typeof(CaveTile) && IsColliding.IsCurrentlyColliding(tile, player))
+                        {
+                            foreach(ICharacter entity in entityPile)
+                            {
+                                if (entity.GetType() != typeof(PlayerCharacter))
+                                {
+                                    map.MapArrayOfArrays[entity.Position[0]][entity.Position[1]] = 0;
+                                    entity.Position = FindTileOrEntitySpawn.StartingPostion(caveMapStorage[tile.AssociationNum], entity);
+                                }
+                            }
+                            endTile.Position[0] = 1;
+                            endTile.Position[1] = 1;
+                            player.Position[0] = 1;
+                            player.Position[1] = 2;
+                            caveMapStorage[tile.AssociationNum].MapArrayOfArrays[1][2] = player.Value;
+                            caveMapStorage[tile.AssociationNum].MapArrayOfArrays[1][1] = ExitTile.Value;
+                            caveMapStorage[tile.AssociationNum].Display = caveMapStorage[tile.AssociationNum].BuildMapDisplay();
+                            newMap = RunMapGameLoop(caveMapStorage[tile.AssociationNum], entityPile, specialTilePile);
+                            isCaveMap = true;
+                            player.Position[0] = tile.Position[0];
+                            player.Position[1] = tile.Position[1] + 1;
+                            foreach (ICharacter entity in entityPile)
+                            {
+                                if (entity.GetType() != typeof(PlayerCharacter))
+                                {
+                                    map.MapArrayOfArrays[entity.Position[0]][entity.Position[1]] = 0;
+                                    entity.Position = FindTileOrEntitySpawn.StartingPostion(caveMapStorage[tile.AssociationNum], entity);
+                                    caveMapStorage[tile.AssociationNum].MapArrayOfArrays[entity.Position[0]][entity.Position[1]] = 0;
+                                }
+                            }
+
+                        }
+                        else if (tile.GetType() == typeof(TownMapTile) && IsColliding.IsCurrentlyColliding(currentTownMapTile, player))
                         {
                             endTile.Position[0] = 1;
                             endTile.Position[1] = 1;
                             player.Position[0] = 1;
                             player.Position[1] = 2;
-                            caveMapStorage[caveTile.AssociationNum].MapArrayOfArrays[1][2] = player.Value;
-                            caveMapStorage[caveTile.AssociationNum].MapArrayOfArrays[1][1] = ExitTile.Value;
-                            caveMapStorage[caveTile.AssociationNum].Display = caveMapStorage[caveTile.AssociationNum].BuildMapDisplay();
-                            newMap = RunMapGameLoop(caveMapStorage[caveTile.AssociationNum], entityPile, specialTilePile);
-                            isCaveMap = true;
-                            player.Position[0] = caveTile.Position[0];
-                            player.Position[1] = caveTile.Position[1] + 1;
+                            townMap.MapArrayOfArrays[1][2] = player.Value;
+                            townMap.MapArrayOfArrays[1][1] = ExitTile.Value;
+                            townMap.Display = townMap.BuildMapDisplay();
+                            for (int i = 0; i < entityPile.Count; i++)
+                            {
+                                if (entityPile[i].GetType() != typeof(PlayerCharacter))
+                                {
+                                    entityPile.Remove(entityPile[i]);
+                                    i = 0;
+                                }
+                            }
+                            newMap = RunMapGameLoop(townMap, entityPile, specialTilePile);
+                            isTownMap = true;
+                            player.Position[0] = currentTownMapTile.Position[0];
+                            player.Position[1] = currentTownMapTile.Position[1] + 1;
                         }
                     }
                 } while (isTownMap || isCaveMap);
                 width += 10;
-                height += 3;
-                if (width == 90)
+                height += 2;
+                if (width == 100)
                 {
                     newMap = false;
                 }
@@ -140,9 +173,25 @@ namespace Brando_Jason_RPGame.GameRunning
             {
                 Console.CursorVisible = false;
                 bool isOver = false;
+                bool hitEnemy = false;
+                List<ICharacter> npcs = new List<ICharacter>();
+                ICharacter player = new PlayerCharacter("...");
+                foreach (ICharacter entity in entityPile)
+                {
+                    if (entity.GetType() != typeof(PlayerCharacter))
+                    {
+                        npcs.Add(entity);
+                    }
+                    else
+                    {
+                        player = entity;
+                    }
+                }
                 foreach (ICharacter entity in entityPile) //Moves each entity which was added to the list of them. 
                 {
                     entity.Move(map);
+                    map.Display = map.BuildMapDisplay();
+                    Display_Map.DisplayMap(map);
                     foreach (Tile special in specialTilePile)
                     {
                         if (IsColliding.IsCurrentlyColliding(special, entity) && entity.GetType() == typeof(PlayerCharacter))
@@ -155,9 +204,27 @@ namespace Brando_Jason_RPGame.GameRunning
                     {
                         break;
                     }
+
                 }
-                map.Display = map.BuildMapDisplay();
-                Display_Map.DisplayMap(map);
+                foreach (ICharacter npc in npcs)
+                {
+                    if (IsColliding.IsCurrentlyColliding(npc, player))
+                    {
+                        isOver = EncounterProg.RunEncounterProg(1);
+                        hitEnemy = true;
+                    }
+                }
+                if (hitEnemy)
+                {
+                    foreach (ICharacter npc in npcs)
+                    {
+                        if (npc.Position[0] == player.Position[0] && npc.Position[1] == player.Position[1])
+                        {
+                            entityPile.Remove(npc);
+                        }
+                    }
+                }
+
 
                 if (isOver)
                 {

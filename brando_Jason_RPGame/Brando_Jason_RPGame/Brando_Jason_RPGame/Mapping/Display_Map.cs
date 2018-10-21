@@ -56,7 +56,7 @@ namespace Brando_Jason_RPGame.Mapping
                 for (int j = 0; j < row.Length;)
                 {
                     bool didThing = false;
-                    if ((i == 0 || i == rowArray.Length - 1) || (!row.Contains('P') && !row.Contains('T') && !row.Contains('E') && !row.Contains('C')))
+                    if ((i == 0 || i == rowArray.Length - 1) || (!row.Contains('P') && !row.Contains('T') && !row.Contains('E') && !row.Contains('C') && !row.Contains('D')))
                     {
                         Console.Write(row);
                         break;
@@ -87,6 +87,13 @@ namespace Brando_Jason_RPGame.Mapping
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.Write(row[j]);
                         row = row.Substring(row.IndexOf('C') + 1);
+                        didThing = true;
+                    }
+                    else if (row[j] == 'D')
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write(row[j]);
+                        row = row.Substring(row.IndexOf('D') + 1);
                         didThing = true;
                     }
                     else
