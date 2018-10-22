@@ -84,7 +84,7 @@ namespace Brando_Jason_RPGame.GameRunning
             return returnedInt;
         }
 
-        public static int[] StartingPostion(Map map, Drone droneToPlace)
+        public static int[] StartingPostion(Map map, ICharacter droneToPlace)
         {
             int[] returnedInt = new int[2];
             bool tilePlaced = false;
