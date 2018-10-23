@@ -73,17 +73,15 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                         break;
                 }
                 DisplayMethods.DisplayInformation("Press any button to continue...");
-                Console.ReadLine();
                 Console.Clear();
                 winState = newMonster.CurrentHP <= 0;
                 if (winState)
                 {
-                    Console.WriteLine("Beat Slime Yay.");
+                    Console.WriteLine($"Beat {newMonster.Name} Yay.");
                     break;
                 }
                 newMonster.Act(player);
                 DisplayMethods.DisplayInformation("Press any button to continue...");
-                Console.ReadLine();
                 Console.Clear();
 
 

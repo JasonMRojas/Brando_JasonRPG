@@ -550,6 +550,15 @@
           }
         }
       },
+      "StyleCop/5.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/StyleCop.dll": {}
+        },
+        "runtime": {
+          "lib/net40/StyleCop.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1483,6 +1492,7 @@
           "CSCore": "1.2.1.2",
           "Dapper": "1.50.5",
           "Microsoft.NETCore.App": "2.1.0",
+          "StyleCop": "5.0.0",
           "System.Data.SqlClient": "4.5.1",
           "System.Runtime": "4.3.0"
         },
@@ -2385,6 +2395,17 @@
         "runtimes/win-x86/native/sni.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "StyleCop/5.0.0": {
+      "sha512": "uyhpJFORMpB32ChaMyX+5FqUrOaiB1K2SZfpUBm7T+7EYifURKk3Ho+J3Kcpwjh5OOzn9Ok+JAxRIq0gu5+i1A==",
+      "type": "package",
+      "path": "stylecop/5.0.0",
+      "files": [
+        "lib/net40/StyleCop.dll",
+        "lib/net40/StyleCop.xml",
+        "stylecop.5.0.0.nupkg.sha512",
+        "stylecop.nuspec"
       ]
     },
     "System.Collections/4.3.0": {
@@ -5301,6 +5322,7 @@
       "Dapper >= 1.50.5",
       "Microsoft.Azure.Management.DataLake.Analytics >= 3.0.1",
       "Microsoft.NETCore.App >= 2.1.0",
+      "StyleCop >= 5.0.0",
       "System.Data.SqlClient >= 4.5.1",
       "System.Runtime >= 4.3.0"
     ]
@@ -5367,6 +5389,10 @@
             "version": "[2.1.0, )",
             "autoReferenced": true
           },
+          "StyleCop": {
+            "target": "Package",
+            "version": "[5.0.0, )"
+          },
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.5.1, )"
@@ -5391,6 +5417,16 @@
       "warningLevel": 1,
       "message": "Package 'CSCore 1.2.1.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
       "libraryId": "CSCore",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'StyleCop 5.0.0' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "StyleCop",
       "targetGraphs": [
         ".NETCoreApp,Version=v2.1"
       ]

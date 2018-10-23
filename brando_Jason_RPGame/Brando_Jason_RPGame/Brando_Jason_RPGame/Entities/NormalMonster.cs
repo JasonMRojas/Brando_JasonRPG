@@ -7,6 +7,7 @@ namespace Brando_Jason_RPGMapping.Entities
 {
     public class NormalMonster : Drone
     {
+        bool _fullyUnstuck = true;
         public override int Value { get; }
 
         public string Display { get; }
@@ -42,7 +43,7 @@ namespace Brando_Jason_RPGMapping.Entities
                 }
             }
 
-            if ((Math.Abs(playerPosition[0] - this.Position[0]) < map.MapArrayOfArrays.Length / 6 || Math.Abs(playerPosition[1] - this.Position[1]) < map.MapArrayOfArrays[0].Length / 6)&& StuckCount <= 5)
+            if (((Math.Abs(playerPosition[0] - this.Position[0]) < 4 && Math.Abs(playerPosition[1] - this.Position[1]) < 10)) && _fullyUnstuck)
             {
                 DoPlayerTrackingMovement(map, playerPosition);
             }
@@ -86,18 +87,25 @@ namespace Brando_Jason_RPGMapping.Entities
             if (this.Position[0] != pDronePos[0] || this.Position[1] != pDronePos[1])
             {
                 map.UpdateDronePostion(pDronePos, this);
-                StuckCount = 0;
+                DidMove = true;
+                if (StuckCount > 0)
+                {
+                    StuckCount --;
+                    if (StuckCount < 5)
+                    {
+                        _fullyUnstuck = true;
+                    }
+                }
+
             }
             else
             {
-                if (this.StuckCount >= 5)
+                StuckCount++;
+                if (StuckCount > 10)
                 {
-                    this.StuckCount -= 2;
+                    _fullyUnstuck = false;
                 }
-                else
-                {
-                    this.StuckCount = 0;
-                }
+                DidMove = false;
             }
         }
 

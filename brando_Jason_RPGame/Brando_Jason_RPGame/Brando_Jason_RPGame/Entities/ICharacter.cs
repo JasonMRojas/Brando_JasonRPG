@@ -11,6 +11,8 @@ namespace Brando_Jason_RPGMapping.Entities
 
         int Value { get; }
 
+        bool DidMove { get; set; }
+
         void Move(Map map);
 
     }

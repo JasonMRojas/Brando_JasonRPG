@@ -40,6 +40,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
         public static int[] StartingPostion(Map map, Tile mapTile)
         {
             int[] returnedInt = new int[2];
+
             bool tilePlaced = false;
             do
             {
@@ -56,20 +57,42 @@ namespace Brando_Jason_RPGMapping.GameRunning
                         int[] rightOfCurrentPosition = new int[2];
                         rightOfCurrentPosition[0] = i;
                         rightOfCurrentPosition[1] = j + 1;
+                        int[] leftOfCurrentPosition = new int[2];
+                        leftOfCurrentPosition[0] = i;
+                        leftOfCurrentPosition[1] = j - 1;
+                        int[] northOfCurrentPosition = new int[2];
+                        northOfCurrentPosition[0] = i + 1;
+                        northOfCurrentPosition[1] = j;
+                        int[] southOfCurrentPosition = new int[2];
+                        southOfCurrentPosition[0] = i - 1;
+                        southOfCurrentPosition[1] = j;
+                        
                         if (map.MapArrayOfArrays[i][j] == 0 && !map.IsSurrounded(map.MapArrayOfArrays, currentPosition, Wall.Value)
                             && !map.IsNextTo(map.MapArrayOfArrays, rightOfCurrentPosition, Wall.Value))
                         {
-                            if (mapTile.GetType() == typeof(TownMapTile))
-                            {
-                                map.MapArrayOfArrays[i][j] = TownMapTile.Value;
-                            }
-                            else
-                            {
-                                map.MapArrayOfArrays[i][j] = CaveTile.Value;
-                            }
                             returnedInt[0] = i;
                             returnedInt[1] = j;
-                            tilePlaced = true;
+                            if (!map.IsNextTo(map.MapArrayOfArrays, currentPosition, TownMapTile.Value) 
+                                && !map.IsNextTo(map.MapArrayOfArrays, currentPosition, CaveTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, rightOfCurrentPosition, TownMapTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, rightOfCurrentPosition, CaveTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, leftOfCurrentPosition, TownMapTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, leftOfCurrentPosition, CaveTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, northOfCurrentPosition, TownMapTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, northOfCurrentPosition, CaveTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, TownMapTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, CaveTile.Value))
+                            {
+                                if (mapTile.GetType() == typeof(TownMapTile))
+                                {
+                                    map.MapArrayOfArrays[i][j] = TownMapTile.Value;
+                                }
+                                else
+                                {
+                                    map.MapArrayOfArrays[i][j] = CaveTile.Value;
+                                }
+                                tilePlaced = true;
+                            }
                             break;
                         }
                     }

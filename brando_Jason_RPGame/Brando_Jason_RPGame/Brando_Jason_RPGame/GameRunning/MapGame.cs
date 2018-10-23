@@ -9,6 +9,8 @@ namespace Brando_Jason_RPGMapping.GameRunning
 {
     public class MapGame
     {
+        int _currentLevel = 1;
+
         /// <summary>
         /// Runs the logic around the game loop
         /// </summary>
@@ -20,7 +22,6 @@ namespace Brando_Jason_RPGMapping.GameRunning
             EncounterProg encounter = new EncounterProg();
             encounter.RunCharacterCreation();
 
-            int currentLevel = 1;
 
             PlayerToken player = new PlayerToken();
             bool newMap = false;
@@ -43,15 +44,11 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 Map map = new Map(width, height);
                 TownMap townMap = new TownMap(width, height);
 
-
-
-
-
                 entityPile.Add(player);
                 Dictionary<int, CaveMap> caveMapStorage = new Dictionary<int, CaveMap>();
 
                 Random randomNumberSeed = new Random();
-                int randomSeed = randomNumberSeed.Next(currentLevel - 1, currentLevel + 2);
+                int randomSeed = randomNumberSeed.Next(_currentLevel - 1, _currentLevel + 2);
                 for (int i = 0; i < randomSeed; i++)
                 {
                     double randomWidthSeed = randomNumberSeed.Next(2, 4);
@@ -63,7 +60,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                     specialTilePile.Add(caveTile);
                     caveMapStorage.Add(i + 1, caveMap);
                 }
-                randomSeed = randomNumberSeed.Next(currentLevel, currentLevel * 2);
+                randomSeed = randomNumberSeed.Next(_currentLevel, _currentLevel * 2);
                 for (int i = 0; i < randomSeed; i++)
                 {
                     NormalMonster slime = new NormalMonster();
@@ -120,7 +117,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
 
                             List<ICharacter> entityCavePile = new List<ICharacter>();
                             entityCavePile.Add(player);
-                            randomSeed = randomNumberSeed.Next(currentLevel, currentLevel * 2);
+                            randomSeed = randomNumberSeed.Next(_currentLevel, _currentLevel * 2);
                             for (int i = 0; i < randomSeed; i++)
                             {
                                 NormalMonster caveSlime = new NormalMonster();
@@ -191,7 +188,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                     newMap = false;
                 }
 
-                currentLevel++;
+                _currentLevel++;
             } while (newMap);
 
             return newMap;
@@ -211,7 +208,12 @@ namespace Brando_Jason_RPGMapping.GameRunning
             ICharacter player = new PlayerToken();
             int tickCounter = 1;
             Random randomMovement = new Random();
-            int randomTick = randomMovement.Next(50, 101);
+            bool updateDisplay = false;
+
+
+            NormalMonster placeHolderWillDelete = new NormalMonster();
+
+            int randomTick = randomMovement.Next(40, 400 / (map.MapArrayOfArrays[0].Length / 10));
             while (true)
             {
                 foreach (ICharacter entity in entityPile)
@@ -219,6 +221,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                     if (entity.GetType() != typeof(PlayerToken))
                     {
                         npcs.Add(entity);
+                        placeHolderWillDelete = (NormalMonster)entity;
                     }
                     else
                     {
@@ -237,6 +240,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                     else if (tickCounter == randomTick && toRemove != entity)
                     {
                         entity.Move(map);
+
                     }
                     foreach (Tile special in specialTilePile)
                     {
@@ -265,6 +269,11 @@ namespace Brando_Jason_RPGMapping.GameRunning
                         }
                     }
                     map.BuildMapDisplay();
+
+                    if (entity.DidMove)
+                    {
+                        updateDisplay = true;
+                    }
                 }
                 entityPile.Remove(toRemove);
 
@@ -273,17 +282,22 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 {
                     break;
                 }
-                tickCounter++;
 
-                if (tickCounter >= 101)
+                if (tickCounter >= randomTick + 1)
                 {
                     tickCounter = 0;
-                    randomTick = randomMovement.Next(1, 100 / entityPile.Count);
+                    randomTick = randomMovement.Next(40, 400 / (map.MapArrayOfArrays[0].Length / 10));
                 }
                 npcs.Clear();
                 map.SetEntityPosition(player);
-                map.BuildMapDisplay();
-                Display_Map.DisplayMap(map);
+                if (updateDisplay)
+                {
+                    map.BuildMapDisplay();
+                    Display_Map.DisplayMap(map);
+                }
+
+                updateDisplay = false;
+                tickCounter++;
             }
 
             return true;

@@ -13,6 +13,8 @@ namespace Brando_Jason_RPGMapping.Entities
 
         public virtual int EncounterLevel { get; }
 
+        public bool DidMove { get; set; }
+
         public Drone()
         {
             Position = new int[] { 1, 1 };

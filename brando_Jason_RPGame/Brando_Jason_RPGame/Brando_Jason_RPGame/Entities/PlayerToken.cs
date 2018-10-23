@@ -7,8 +7,12 @@ namespace Brando_Jason_RPGMapping.Entities
 {
     public class PlayerToken : ICharacter
     {
+        public bool DidMove { get; set; }
+
         public string Name { get; }
+
         public int[] Position { get; set; }
+
 
         public string Display { get { return "P"; } }
 
@@ -72,6 +76,11 @@ namespace Brando_Jason_RPGMapping.Entities
             if (this.Position[0] != pCharacterPos[0] || this.Position[1] != pCharacterPos[1])
             {
                 currentMap.UpdateCharacterPostion(pCharacterPos, this);
+                DidMove = true;
+            }
+            else
+            {
+                DidMove = false;
             }
 
         }
