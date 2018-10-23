@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Brando_Jason_RPGame.Mapping
+namespace Brando_Jason_RPGMapping.Mapping
 {
     public class CaveTile : Tile
     {
@@ -10,5 +10,9 @@ namespace Brando_Jason_RPGame.Mapping
 
         public new static int Value { get => 4; }
 
+        public CaveTile()
+        {
+            this.InstanValue = CaveTile.Value;
+        }
     }
 }

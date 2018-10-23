@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Brando_Jason_RPGame.Entities;
+using Brando_Jason_RPGMapping.Entities;
 
-namespace Brando_Jason_RPGame.Mapping
+namespace Brando_Jason_RPGMapping.Mapping
 {
     public class Map
     {
         /// <summary>
         /// Holds the display in the form of a string
         /// </summary>
-        public string Display { get; set; }
+        public string Display { get; private set; }
 
         /// <summary>
         /// Holds the values in the map in an Array of Arrays. Its is basically a grid
@@ -41,6 +41,16 @@ namespace Brando_Jason_RPGame.Mapping
             this.MapArrayOfArrays[1][1] = -2;
         }
 
+        public void SetEntityPosition(ICharacter entity)
+        {
+            MapArrayOfArrays[entity.Position[0]][entity.Position[1]] = entity.Value;
+        }
+
+        public void SetTilePosition(int[] position, int value)
+        {
+            MapArrayOfArrays[position[0]][position[1]] = value;
+        }
+
         /// <summary>
         /// Updates the positions of the various drones on the map values
         /// </summary>
@@ -57,20 +67,10 @@ namespace Brando_Jason_RPGame.Mapping
         /// </summary>
         /// <param name="pCharacterPos"></param>
         /// <param name="newCharacterPosition"></param>
-        public void UpdateCharacterPostion(int[] pCharacterPos, PlayerCharacter newCharacterPosition)
+        public void UpdateCharacterPostion(int[] pCharacterPos, PlayerToken newCharacterPosition)
         {
-            if (this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] != -3
-                && this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] != -4
-                && this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] != -5)
-            {
-                this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] = newCharacterPosition.Value;
-                this.MapArrayOfArrays[pCharacterPos[0]][pCharacterPos[1]] = Tile.Value;
-            }
-            else
-            {
-                this.MapArrayOfArrays[pCharacterPos[0]][pCharacterPos[1]] = Tile.Value;
-            }
-
+            this.MapArrayOfArrays[newCharacterPosition.Position[0]][newCharacterPosition.Position[1]] = newCharacterPosition.Value;
+            this.MapArrayOfArrays[pCharacterPos[0]][pCharacterPos[1]] = Tile.Value;
         }
 
         /// <summary>
@@ -251,7 +251,7 @@ namespace Brando_Jason_RPGame.Mapping
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
-        public string BuildMapDisplay()
+        public void BuildMapDisplay()
         {
             string mapDisplay = "";
             for (int i = 0; i < this.MapArrayOfArrays.Length; i++)
@@ -300,7 +300,7 @@ namespace Brando_Jason_RPGame.Mapping
                 }
                 mapDisplay += "\n\r";
             }
-            return mapDisplay;
+            this.Display = mapDisplay;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
-using Brando_Jason_RPGame.GameRunning;
+using Brando_Jason_RPGMapping.GameRunning;
 
-namespace Brando_Jason_RPGame
+namespace Brando_Jason_RPGMapping
 {
     class Program
     {

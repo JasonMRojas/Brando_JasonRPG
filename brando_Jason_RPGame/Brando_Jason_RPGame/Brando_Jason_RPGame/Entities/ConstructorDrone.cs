@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace Brando_Jason_RPGame.Entities
+namespace Brando_Jason_RPGMapping.Entities
 {
     public class ConstructorDrone : Drone
     {

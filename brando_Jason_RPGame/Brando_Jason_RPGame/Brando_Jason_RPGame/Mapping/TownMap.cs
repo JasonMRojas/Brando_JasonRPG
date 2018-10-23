@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Brando_Jason_RPGame.Entities;
+using Brando_Jason_RPGMapping.Entities;
 using System.IO;
 
-namespace Brando_Jason_RPGame.Mapping
+namespace Brando_Jason_RPGMapping.Mapping
 {
     public class TownMap : Map
     {

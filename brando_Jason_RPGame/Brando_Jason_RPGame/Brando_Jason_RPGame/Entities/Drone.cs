@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Brando_Jason_RPGame.Mapping;
+using Brando_Jason_RPGMapping.Mapping;
 
-namespace Brando_Jason_RPGame.Entities
+namespace Brando_Jason_RPGMapping.Entities
 {
     public class Drone : ICharacter
     {
         public int[] Position { get; set; }
 
         public virtual int Value { get; }
+
+        public virtual int EncounterLevel { get; }
 
         public Drone()
         {

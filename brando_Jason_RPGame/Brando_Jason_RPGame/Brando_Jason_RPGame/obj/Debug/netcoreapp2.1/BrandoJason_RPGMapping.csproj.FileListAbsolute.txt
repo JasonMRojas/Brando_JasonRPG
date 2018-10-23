@@ -25,3 +25,7 @@ C:\Users\Brandon Batel\Documents\Game Project JR\brando_jason_rpggame\brando_Jas
 C:\Users\Brandon Batel\Documents\Game Project JR\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.dll
 C:\Users\Brandon Batel\Documents\Game Project JR\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.pdb
 C:\Users\Brandon Batel\Documents\Game Project JR\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\BrandoJason_RPGMapping.csproj.CopyComplete
+C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.dll
+C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.pdb
+C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\BrandoJason_RPGMapping.csproj.CopyComplete
+C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Lufia_2_Music_-_Battle_Theme1-NFvwTKzWrLg.wav

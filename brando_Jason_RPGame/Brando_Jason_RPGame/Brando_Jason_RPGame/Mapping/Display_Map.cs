@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Brando_Jason_RPGame.Mapping
+namespace Brando_Jason_RPGMapping.Mapping
 {
     public abstract class Display_Map
     {

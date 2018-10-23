@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Brando_Jason_RPGame.Entities;
-using Brando_Jason_RPGame.Mapping;
+using Brando_Jason_RPGMapping.Entities;
+using Brando_Jason_RPGMapping.Mapping;
 
-namespace Brando_Jason_RPGame.GameRunning
+namespace Brando_Jason_RPGMapping.GameRunning
 {
     public static class FindTileOrEntitySpawn
     {
@@ -78,16 +78,15 @@ namespace Brando_Jason_RPGame.GameRunning
                         break;
                     }
                 }
-                Console.WriteLine("TRIED PLACE TILE");
             } while (!tilePlaced);
-            
+
             return returnedInt;
         }
 
         public static int[] StartingPostion(Map map, ICharacter droneToPlace)
         {
             int[] returnedInt = new int[2];
-            bool tilePlaced = false;
+            bool dronePlaced = false;
             do
             {
                 Random random = new Random();
@@ -106,17 +105,10 @@ namespace Brando_Jason_RPGame.GameRunning
                         if (map.MapArrayOfArrays[i][j] == 0 && !map.IsSurrounded(map.MapArrayOfArrays, currentPosition, Wall.Value)
                             && !map.IsNextTo(map.MapArrayOfArrays, rightOfCurrentPosition, Wall.Value))
                         {
-                            if (droneToPlace.GetType() == typeof(TownMapTile))
-                            {
-                                map.MapArrayOfArrays[i][j] = -2;
-                            }
-                            else
-                            {
-                                map.MapArrayOfArrays[i][j] = -3;
-                            }
+                            map.MapArrayOfArrays[i][j] = droneToPlace.Value;
                             returnedInt[0] = i;
                             returnedInt[1] = j;
-                            tilePlaced = true;
+                            dronePlaced = true;
                             break;
                         }
                     }
@@ -125,8 +117,7 @@ namespace Brando_Jason_RPGame.GameRunning
                         break;
                     }
                 }
-                Console.WriteLine("TRIED PLACE TILE");
-            } while (!tilePlaced);
+            } while (!dronePlaced);
 
             return returnedInt;
         }

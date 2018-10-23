@@ -33,7 +33,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
             this.Name = name;
             LevelingArray = new int[] { 0, 1, 5, 15, 25, 50, 100, 150, 225, 300, 500 };
             this.Level = 0;
-            this.Exp = 500;
+            this.Exp = 5;
             this.MaxExp = LevelingArray[LevelingArray.Length - 1];
         }
 

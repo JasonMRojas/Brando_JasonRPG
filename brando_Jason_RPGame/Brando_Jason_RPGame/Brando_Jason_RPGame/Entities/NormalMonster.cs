@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Brando_Jason_RPGame.Mapping;
+using Brando_Jason_RPGMapping.Mapping;
 
-namespace Brando_Jason_RPGame.Entities
+namespace Brando_Jason_RPGMapping.Entities
 {
     public class NormalMonster : Drone
     {
@@ -11,10 +11,13 @@ namespace Brando_Jason_RPGame.Entities
 
         public string Display { get; }
 
-        public NormalMonster(Map map)
+        public override int EncounterLevel { get; }
+
+        public NormalMonster()
         {
             this.Value = -3;
             this.Display = "D";
+            this.EncounterLevel = 1;
         }
 
         public override void Move(Map map)

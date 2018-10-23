@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Brando_Jason_RPGame.Entities;
-using Brando_Jason_RPGame.Mapping;
+using Brando_Jason_RPGMapping.Entities;
+using Brando_Jason_RPGMapping.Mapping;
 
-namespace Brando_Jason_RPGame.GameRunning
+namespace Brando_Jason_RPGMapping.GameRunning
 {
     public static class IsColliding
     {

@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrandoJason_RPGMapping", "Brando_Jason_RPGame\BrandoJason_RPGMapping.csproj", "{7395B82B-3C93-40AE-BF99-8F3A1E9F446A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrandoJason_RPGEncounterLogic", "BrandoJason_RPGEncounterLogic\BrandoJason_RPGEncounterLogic.csproj", "{231B8DC5-7D80-4D7C-8DF6-30065B4BAF23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrandoJason_RPGEncounterLogic", "BrandoJason_RPGEncounterLogic\BrandoJason_RPGEncounterLogic.csproj", "{231B8DC5-7D80-4D7C-8DF6-30065B4BAF23}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

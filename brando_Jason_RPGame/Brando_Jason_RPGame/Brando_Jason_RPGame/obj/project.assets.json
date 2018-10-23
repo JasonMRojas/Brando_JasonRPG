@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "CSCore/1.2.1.2": {
+        "type": "package",
+        "compile": {
+          "lib/net35-client/CSCore.dll": {}
+        },
+        "runtime": {
+          "lib/net35-client/CSCore.dll": {}
+        }
+      },
       "Dapper/1.50.5": {
         "type": "package",
         "dependencies": {
@@ -1471,9 +1480,11 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
+          "CSCore": "1.2.1.2",
           "Dapper": "1.50.5",
           "Microsoft.NETCore.App": "2.1.0",
-          "System.Data.SqlClient": "4.5.1"
+          "System.Data.SqlClient": "4.5.1",
+          "System.Runtime": "4.3.0"
         },
         "compile": {
           "bin/placeholder/BrandoJason_RPGEncounterLogic.dll": {}
@@ -1485,6 +1496,17 @@
     }
   },
   "libraries": {
+    "CSCore/1.2.1.2": {
+      "sha512": "DoQKUcdZLQawo3mOg8CvujJD9YkvTt6NtEu7S+OCo8+ySl8eCeUw4LFyL2E1OcAkPU918HZM6sUNcvIMcXWg6g==",
+      "type": "package",
+      "path": "cscore/1.2.1.2",
+      "files": [
+        "cscore.1.2.1.2.nupkg.sha512",
+        "cscore.nuspec",
+        "lib/net35-client/CSCore.XML",
+        "lib/net35-client/CSCore.dll"
+      ]
+    },
     "Dapper/1.50.5": {
       "sha512": "AzAdZ9fEzUtav3Sbc5CMgz5O2oYkc5g1r+g1h/Vn+wqcInII+xtNEfyZryeW90Wq72bxjEBJhe18j+2SrGrc5A==",
       "type": "package",
@@ -5275,30 +5297,32 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "BrandoJason_RPGEncounterLogic >= 1.0.0",
+      "CSCore >= 1.2.1.2",
       "Dapper >= 1.50.5",
       "Microsoft.Azure.Management.DataLake.Analytics >= 3.0.1",
       "Microsoft.NETCore.App >= 2.1.0",
-      "System.Data.SqlClient >= 4.5.1"
+      "System.Data.SqlClient >= 4.5.1",
+      "System.Runtime >= 4.3.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Brandon Batel\\.nuget\\packages\\": {},
+    "C:\\Users\\Jason Rojas\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGMapping.csproj",
+      "projectUniqueName": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGMapping.csproj",
       "projectName": "BrandoJason_RPGMapping",
-      "projectPath": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGMapping.csproj",
-      "packagesPath": "C:\\Users\\Brandon Batel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\Brando_Jason_RPGame\\obj\\",
+      "projectPath": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGMapping.csproj",
+      "packagesPath": "C:\\Users\\Jason Rojas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\Brando_Jason_RPGame\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Brandon Batel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jason Rojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5311,8 +5335,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj": {
-              "projectPath": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj"
+            "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj": {
+              "projectPath": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj"
             }
           }
         }
@@ -5326,6 +5350,10 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "CSCore": {
+            "target": "Package",
+            "version": "[1.2.1.2, )"
+          },
           "Dapper": {
             "target": "Package",
             "version": "[1.50.5, )"
@@ -5342,6 +5370,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.5.1, )"
+          },
+          "System.Runtime": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [
@@ -5351,5 +5383,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'CSCore 1.2.1.2' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETCoreApp,Version=v2.1'. This package may not be fully compatible with your project.",
+      "libraryId": "CSCore",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v2.1"
+      ]
+    }
+  ]
 }

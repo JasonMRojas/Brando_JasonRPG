@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BrandoJason_RPGEncounterLogic\BrandoJason_RPGEncounterLogic.csproj" />
+    <ProjectReference Include="..\Brando_Jason_RPGame\BrandoJason_RPGMapping.csproj" />
+  </ItemGroup>
+
+</Project>
