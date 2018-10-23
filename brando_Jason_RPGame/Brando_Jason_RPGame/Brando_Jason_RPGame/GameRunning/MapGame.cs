@@ -20,7 +20,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
             EncounterProg encounter = new EncounterProg();
             encounter.RunCharacterCreation();
 
-
+            int currentLevel = 1;
 
             PlayerToken player = new PlayerToken();
             bool newMap = false;
@@ -51,7 +51,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 Dictionary<int, CaveMap> caveMapStorage = new Dictionary<int, CaveMap>();
 
                 Random randomNumberSeed = new Random();
-                int randomSeed = randomNumberSeed.Next(1, 5);
+                int randomSeed = randomNumberSeed.Next(currentLevel - 1, currentLevel + 2);
                 for (int i = 0; i < randomSeed; i++)
                 {
                     double randomWidthSeed = randomNumberSeed.Next(2, 4);
@@ -63,7 +63,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                     specialTilePile.Add(caveTile);
                     caveMapStorage.Add(i + 1, caveMap);
                 }
-                randomSeed = randomNumberSeed.Next(1, width / 10);
+                randomSeed = randomNumberSeed.Next(currentLevel, currentLevel * 2);
                 for (int i = 0; i < randomSeed; i++)
                 {
                     NormalMonster slime = new NormalMonster();
@@ -120,7 +120,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
 
                             List<ICharacter> entityCavePile = new List<ICharacter>();
                             entityCavePile.Add(player);
-                            randomSeed = randomNumberSeed.Next(1, (caveMapStorage[tile.AssociationNum].MapArrayOfArrays[0].Length - 2)/2);
+                            randomSeed = randomNumberSeed.Next(currentLevel, currentLevel * 2);
                             for (int i = 0; i < randomSeed; i++)
                             {
                                 NormalMonster caveSlime = new NormalMonster();
@@ -190,6 +190,8 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 {
                     newMap = false;
                 }
+
+                currentLevel++;
             } while (newMap);
 
             return newMap;
@@ -207,6 +209,9 @@ namespace Brando_Jason_RPGMapping.GameRunning
             Display_Map.DisplayMap(map);
             List<ICharacter> npcs = new List<ICharacter>();
             ICharacter player = new PlayerToken();
+            int tickCounter = 1;
+            Random randomMovement = new Random();
+            int randomTick = randomMovement.Next(50, 101);
             while (true)
             {
                 foreach (ICharacter entity in entityPile)
@@ -225,7 +230,11 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 Drone toRemove = new Drone();
                 foreach (ICharacter entity in entityPile) //Moves each entity which was added to the list of them. 
                 {
-                    if (toRemove != entity)
+                    if (entity.GetType() == typeof(PlayerToken))
+                    {
+                        entity.Move(map);
+                    }
+                    else if (tickCounter == randomTick && toRemove != entity)
                     {
                         entity.Move(map);
                     }
@@ -264,7 +273,13 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 {
                     break;
                 }
+                tickCounter++;
 
+                if (tickCounter >= 101)
+                {
+                    tickCounter = 0;
+                    randomTick = randomMovement.Next(1, 100 / entityPile.Count);
+                }
                 npcs.Clear();
                 map.SetEntityPosition(player);
                 map.BuildMapDisplay();

@@ -22,6 +22,13 @@ namespace Brando_Jason_RPGMapping.Mapping
                 {
                     int randomSeedNumber = randomSeed.Next(0, 5);
                     constructor.Move(this);
+                    int[] start = new int[2] { 1, 2 };
+                    if (IsNextTo(this.MapArrayOfArrays, start, Wall.Value))
+                    {
+                        this.MapArrayOfArrays[2][2] = Tile.Value;
+                        this.MapArrayOfArrays[2][3] = Tile.Value;
+                        this.MapArrayOfArrays[1][3] = Tile.Value;
+                    }
                     if (this.MapArrayOfArrays[constructor.Position[0]][constructor.Position[1]] != ExitTile.Value)
                     {
                         if (!IsSurrounded(this.MapArrayOfArrays, constructor, 0))

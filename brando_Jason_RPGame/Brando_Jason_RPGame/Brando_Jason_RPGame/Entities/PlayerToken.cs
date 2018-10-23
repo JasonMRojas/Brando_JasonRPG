@@ -25,7 +25,10 @@ namespace Brando_Jason_RPGMapping.Entities
         public void Move(Map currentMap)
         {
             ConsoleKeyInfo input = new ConsoleKeyInfo();
-            input = Console.ReadKey();
+            if (Console.KeyAvailable)
+            {
+                input = Console.ReadKey();
+            }
             int pX = this.Position[1];
             int pY = this.Position[0];
             int[] pCharacterPos = new int[2];
@@ -61,6 +64,8 @@ namespace Brando_Jason_RPGMapping.Entities
                     {
                         this.Position[1]--;
                     }
+                    break;
+                default:
                     break;
             }
 

@@ -25,20 +25,37 @@ namespace BrandoJason_RPGEncounterLogic.Database
             this.StatValues = new DataTable();
 
 
-            SqlConnection sqlCon = new SqlConnection(sqlConnectionString);
-            SqlDataAdapter sqlMonster = new SqlDataAdapter("Select * from monsters", sqlCon);
-            SqlDataAdapter sqlUsuableItem = new SqlDataAdapter("Select * from Usuable_Items", sqlCon);
-            SqlDataAdapter sqlEquipItem = new SqlDataAdapter("Select * from Equipable_Items", sqlCon);
-            SqlDataAdapter sqlAbilities = new SqlDataAdapter("Select * from Abilities", sqlCon);
-            SqlDataAdapter sqlEffects = new SqlDataAdapter("Select * from Effects", sqlCon);
-            SqlDataAdapter sqlStatValues = new SqlDataAdapter("Select * from Stat_Values", sqlCon);
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(sqlConnectionString))
+                {
 
-            sqlMonster.Fill(this.Monster);
-            sqlUsuableItem.Fill(this.Usuable_Item);
-            sqlEquipItem.Fill(this.Equipable_Item);
-            sqlAbilities.Fill(this.Abilities);
-            sqlEffects.Fill(this.Effects);
-            sqlStatValues.Fill(this.StatValues);
+
+                    conn.Open();
+
+                    SqlDataAdapter sqlMonster = new SqlDataAdapter("Select * from monsters", conn);
+                    SqlDataAdapter sqlUsuableItem = new SqlDataAdapter("Select * from Usuable_Items", conn);
+                    SqlDataAdapter sqlEquipItem = new SqlDataAdapter("Select * from Equipable_Items", conn);
+                    SqlDataAdapter sqlAbilities = new SqlDataAdapter("Select * from Abilities", conn);
+                    SqlDataAdapter sqlEffects = new SqlDataAdapter("Select * from Effects", conn);
+                    SqlDataAdapter sqlStatValues = new SqlDataAdapter("Select * from Stat_Values", conn);
+
+                    sqlMonster.Fill(this.Monster);
+                    sqlUsuableItem.Fill(this.Usuable_Item);
+                    sqlEquipItem.Fill(this.Equipable_Item);
+                    sqlAbilities.Fill(this.Abilities);
+                    sqlEffects.Fill(this.Effects);
+                    sqlStatValues.Fill(this.StatValues);
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Connection to SQL databse failed");
+                throw;
+            }
+
+
         }
     }
 }
+
