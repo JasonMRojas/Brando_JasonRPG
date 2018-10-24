@@ -43,7 +43,7 @@ namespace Brando_Jason_RPGMapping.Entities
                 }
             }
 
-            if (((Math.Abs(playerPosition[0] - this.Position[0]) < 4 && Math.Abs(playerPosition[1] - this.Position[1]) < 10)) && _fullyUnstuck)
+            if (CheckPlayerTrackingConditions(playerPosition))
             {
                 DoPlayerTrackingMovement(map, playerPosition);
             }
@@ -90,8 +90,8 @@ namespace Brando_Jason_RPGMapping.Entities
                 DidMove = true;
                 if (StuckCount > 0)
                 {
-                    StuckCount --;
-                    if (StuckCount < 5)
+                    StuckCount--;
+                    if (StuckCount < 1)
                     {
                         _fullyUnstuck = true;
                     }
@@ -101,12 +101,20 @@ namespace Brando_Jason_RPGMapping.Entities
             else
             {
                 StuckCount++;
-                if (StuckCount > 10)
+                if (StuckCount > 5)
                 {
                     _fullyUnstuck = false;
                 }
                 DidMove = false;
             }
+        }
+
+        private bool CheckPlayerTrackingConditions(int[] playerPosition)
+        {
+            return (((Math.Abs(playerPosition[0] - this.Position[0]) < 5 && Math.Abs(playerPosition[1] - this.Position[1]) < 10))
+                            && _fullyUnstuck)
+                            || (Math.Abs(playerPosition[1] - this.Position[1]) == 0 && Math.Abs(playerPosition[0] - this.Position[0]) == 1)
+                            || (Math.Abs(playerPosition[1] - this.Position[1]) == 1 && Math.Abs(playerPosition[0] - this.Position[0]) == 0);
         }
 
         private void DoPlayerTrackingMovement(Map map, int[] playerPosition)

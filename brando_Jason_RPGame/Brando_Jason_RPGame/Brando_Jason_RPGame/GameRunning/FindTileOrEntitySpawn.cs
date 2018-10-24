@@ -39,7 +39,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
 
         public static int[] StartingPostion(Map map, Tile mapTile)
         {
-            int[] returnedInt = new int[2];
+            int[] returnedInt = new int[2];             
 
             bool tilePlaced = false;
             do
@@ -83,17 +83,9 @@ namespace Brando_Jason_RPGMapping.GameRunning
                                 && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, TownMapTile.Value)
                                 && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, CaveTile.Value))
                             {
-                                if (mapTile.GetType() == typeof(TownMapTile))
-                                {
-                                    map.MapArrayOfArrays[i][j] = TownMapTile.Value;
-                                }
-                                else
-                                {
-                                    map.MapArrayOfArrays[i][j] = CaveTile.Value;
-                                }
                                 tilePlaced = true;
+                                break;
                             }
-                            break;
                         }
                     }
                     if (i == returnedInt[0])

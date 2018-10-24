@@ -33,11 +33,8 @@ namespace BrandoJason_RPGEncounterLogic
         {
             EncounterRunning newEnounter = new EncounterRunning(Data);
 
-            //PlaySound("Lufia_2_Music_-_Battle_Theme1-NFvwTKzWrLg.wav");
-
             var song = new Playable(new MusicPlayer());
             song.Play();
-
 
             System.Threading.Thread.Sleep(1000);
 
@@ -45,7 +42,8 @@ namespace BrandoJason_RPGEncounterLogic
 
             song.Stop();
 
-            return false;
+
+            return Player.CurrentHP <= 0;
         }
     }
 }

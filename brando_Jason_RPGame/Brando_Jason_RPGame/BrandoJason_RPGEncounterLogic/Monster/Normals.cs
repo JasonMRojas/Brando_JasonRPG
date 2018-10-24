@@ -73,6 +73,7 @@ namespace BrandoJason_RPGEncounterLogic.Monster
             };
 
             DisplayMethods.DisplayInformation(prompts);
+            System.Threading.Thread.Sleep(1000);
         }
     }
 }

@@ -191,6 +191,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
                 $"The {monster.Name} trembles... probably..."
             };
             DisplayMethods.DisplayInformation(prompts);
+            System.Threading.Thread.Sleep(1000);
         }
     }
 }
