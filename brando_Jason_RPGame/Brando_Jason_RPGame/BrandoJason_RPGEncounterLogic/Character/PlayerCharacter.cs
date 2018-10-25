@@ -20,22 +20,29 @@ namespace BrandoJason_RPGEncounterLogic.Character
         public int MagDefense { get; set; }
         public int MagAttack { get; set; }
         public int Luck { get; set; }
-        public int Exp { get; set; }
-        public int Gold { get; set; }
-        public int Level { get; set; }
+        public int Exp { get; private set; }
+        public int Gold { get; private set; }
+        public int Level { get; private set; }
         public int MaxExp { get; }
         public int[] LevelingArray { get; }
 
         public List<IItem> Inventory { get; private set; }
+        public List<Spell> Spells { get; private set; }
+
 
         public PlayerCharacter(string name)
         {
             this.Name = name;
             LevelingArray = new int[] { 0, 1, 5, 15, 25, 50, 100, 150, 225, 300, 500 };
+            this.MaxStamina = 5;
+            this.CurrentStamina = this.MaxStamina;
             this.Level = 0;
-            this.Exp = 5;
+            this.Exp = 0;
+            this.Luck = 2;
             this.MaxExp = LevelingArray[LevelingArray.Length - 1];
+            this.Spells = new List<Spell>();
         }
+
 
         public void ViewItemInventory()
         {
@@ -66,7 +73,16 @@ namespace BrandoJason_RPGEncounterLogic.Character
                 "Gold: " + this.Gold
             };
             DisplayMethods.DisplayInformation(newPrompts);
-            DisplayMethods.DisplayInformation("Press any button to continue...");
+        }
+
+        public void ReplenishStamina()
+        {
+            this.CurrentStamina = this.MaxStamina;
+        }
+
+        public void ReplenishStamina(int amountReplenish)
+        {
+            this.CurrentStamina += amountReplenish;
         }
 
         public void AddGold(int amountGold)
@@ -74,10 +90,49 @@ namespace BrandoJason_RPGEncounterLogic.Character
             this.Gold += amountGold;
         }
 
-        public void removeGold(int amountRemoveGold)
+        public void RemoveGold(int amountRemoveGold)
         {
-
+            this.Gold -= amountRemoveGold;
         }
+
+        public void CheckIfLevelUp()
+        {
+            if (this.Exp > this.LevelingArray[this.Level])
+            {
+                this.LevelUp();
+            }
+        }
+
+        public void ReplenishHp(bool isTown)
+        {
+            if (this.CurrentHP < this.MaxHP / 2)
+            {
+                this.CurrentHP = this.MaxHP / 2;
+            }
+        }
+
+        public void AwardExp(int exp)
+        {
+            if (this.Exp + exp <= this.MaxExp)
+            {
+                this.Exp += exp;
+            }
+            else
+            {
+                this.Exp = this.MaxExp;
+            }
+        }
+
+        internal void ViewSpells()
+        {
+            List<string> prompts = new List<string>();
+            foreach (Spell spell in Spells)
+            {
+                prompts.Add($"{spell.Name} || Cost: {spell.MpCost} || Base Damage: {spell.Damage}");
+            }
+            DisplayMethods.DisplayInformation(prompts);
+        }
+
         /// <summary>
         /// add item 
         /// </summary>
@@ -86,14 +141,14 @@ namespace BrandoJason_RPGEncounterLogic.Character
             Inventory.Add(newItem);
         }
 
-        public void LevelUp()
+        private void LevelUp()
         {
             List<string> prompts = new List<string>();
             prompts.Add("Level: " + this.Level);
 
             Random randomLevelSeed = new Random();
-            int randomHPAddition = randomLevelSeed.Next(3, this.Luck / randomLevelSeed.Next(1, 33) + 3);
-            int randomMPAddition = randomLevelSeed.Next(2, this.Luck / randomLevelSeed.Next(1, 3) + 2);
+            int randomHPAddition = randomLevelSeed.Next(3, this.Luck / randomLevelSeed.Next(1, 3) + 3);
+            int randomMPAddition = randomLevelSeed.Next(2, this.Luck / randomLevelSeed.Next(1, 3) + 1);
             int count = 3;
             bool didLevelNineCount = false;
 
@@ -167,28 +222,81 @@ namespace BrandoJason_RPGEncounterLogic.Character
                     this.MaxMP += randomMPAddition;
                     this.CurrentMP += randomMPAddition;
                     randomHPAddition = randomLevelSeed.Next(3, this.Luck / randomLevelSeed.Next(1, 3) + 3);
-                    randomMPAddition = randomLevelSeed.Next(2, this.Luck / randomLevelSeed.Next(1, 3) + 2);
+                    randomMPAddition = randomLevelSeed.Next(2, this.Luck / randomLevelSeed.Next(1, 3) + 1);
                 }
                 prompts.Clear();
                 Console.Clear();
             }
-            DisplayMethods.DisplayInformation("Finished Leveling");
-            Console.ReadLine();
+
+            if (this.Level == 1)
+            {
+                Spell fireBall = new Spell("FireBall", 2, 2);
+                DisplayMethods.DisplayInformation($"For reaching {this.Level} level you have been awarded the {fireBall.Name} Spell || {fireBall.Damage} damage || {fireBall.MpCost} cost. ");
+                this.AddSpell(fireBall);
+            }
+
+            DisplayMethods.DisplayInformation("Finished Leveling", true);
+            Console.Clear();
+        }
+
+        private void AddSpell(Spell spell)
+        {
+            Spells.Add(spell);
         }
 
         public void PhysicalAttack(Normals monster)
         {
-            int dealtDamage = this.Attack - monster.Defense;
+            this.CurrentStamina -= 1;
+            if (this.CurrentStamina > -1)
+            {
+                int dealtDamage = this.Attack - monster.Defense;
+                if (dealtDamage < 0)
+                {
+                    dealtDamage = 0;
+                }
+                monster.CurrentHP -= dealtDamage;
+                List<string> prompts = new List<string>()
+            {
+                $"{this.Name} Punched the {monster.Name}",
+                $"{this.Name} dealt {dealtDamage} dmg!!!",
+                $"You spent 1 stamina || Current Stamina {this.CurrentStamina}",
+                $"The {monster.Name} trembles... probably..."
+            };
+                DisplayMethods.DisplayInformation(prompts);
+            }
+            else
+            {
+                this.CurrentStamina = 0;
+                DisplayMethods.DisplayInformation("You were too tired to attack... (Stamina too low)");
+            }
+
+            System.Threading.Thread.Sleep(1000);
+        }
+
+        public void MagicalAttack(Normals monster, string spellName)
+        {
+            Spell spellToCast = new Spell("You Have No Spells", 0, 0);
+            foreach (Spell spell in Spells)
+            {
+                if (spellName == spell.Name)
+                {
+                    spellToCast = spell;
+                }
+            }
+            int dealtDamage = (this.MagAttack + spellToCast.Damage) - monster.MagDefense;
             if (dealtDamage < 0)
             {
                 dealtDamage = 0;
             }
+            this.CurrentMP -= spellToCast.MpCost;
             monster.CurrentHP -= dealtDamage;
+
             List<string> prompts = new List<string>()
             {
-                $"{this.Name} Punched the {monster.Name}",
-                $"You dealt {dealtDamage} dmg!!!",
-                $"The {monster.Name} trembles... probably..."
+                $"{this.Name} Casts: {spellToCast.Name}",
+                $"{this.Name} does {dealtDamage} damage",
+                $"{this.Name} used {spellToCast.MpCost} mp and now has {this.CurrentMP} mp left",
+                $"The {monster.Name} steps back... probably"
             };
             DisplayMethods.DisplayInformation(prompts);
             System.Threading.Thread.Sleep(1000);

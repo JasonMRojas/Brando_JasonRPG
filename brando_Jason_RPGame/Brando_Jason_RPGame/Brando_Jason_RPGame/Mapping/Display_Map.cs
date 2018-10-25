@@ -111,10 +111,21 @@ namespace Brando_Jason_RPGMapping.Mapping
 
             }
             Console.WriteLine("Controls are arrow keys or (WASD)");
+            Console.WriteLine("I for Inventory || Escape to pause || V for status || O for spells");
+            if (map.GetType() == typeof(TownMap))
+            {
+                Console.WriteLine("Stamina and HP Replenished!!!");
+            }
+            else
+            {
+                Console.WriteLine("Replenish Stamina to Full by being in town");
+                Console.WriteLine("Replenish half of your hp by being in town");
+            }
             Console.Write("YOU ARE THE: ");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("P");
             Console.ResetColor();
+
 
         }
     }

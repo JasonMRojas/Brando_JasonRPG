@@ -6,7 +6,8 @@ using BrandoJason_RPGEncounterLogic.Database;
 using BrandoJason_RPGEncounterLogic.Encounter;
 using CSCore.CoreAudioAPI;
 using BrandoJason_RPGEncounterLogic.Sound;
-
+using BrandoJason_RPGEncounterLogic.Display;
+using System.Collections.Generic;
 
 namespace BrandoJason_RPGEncounterLogic
 {
@@ -22,8 +23,33 @@ namespace BrandoJason_RPGEncounterLogic
 
         public void RunCharacterCreation()
         {
-            this.Player = new PlayerCharacter("Name");
-            this.Player.LevelUp();
+            List<string> getName = new List<string>()
+            {
+                "Enter Name: "
+            };
+            this.Player = new PlayerCharacter(DisplayMethods.DisplayInformation(getName, true));
+
+            Console.Clear();
+
+            List<string> prompts = new List<string>()
+            {
+                "Welcome to a Rogue Tribute",
+                "Every single playthrough will be randomized and unique",
+                "There are 10 Levels...",
+                "Hadrian, The Stone King, Awaits you at the End...",
+                "GoodLuck...",
+            };
+
+            DisplayMethods.DisplayInformation(prompts, 2000);
+
+            DisplayMethods.DisplayInformation(this.Player.Name, 300);
+
+            DisplayMethods.DisplayInformation("Press Any Key to Continue...", true);
+
+            Console.Clear();
+
+            this.Player.AwardExp(1);
+            this.Player.CheckIfLevelUp();
 
             this.Data = new RPGDateBaseStorage();
             Data.PopulateDataBase(@"Data Source = (local)\SQLEXPRESS; Initial Catalog = RPG; Integrated Security = True;");
@@ -33,17 +59,53 @@ namespace BrandoJason_RPGEncounterLogic
         {
             EncounterRunning newEnounter = new EncounterRunning(Data);
 
-            var song = new Playable(new MusicPlayer());
-            song.Play();
-
-            System.Threading.Thread.Sleep(1000);
-
             newEnounter.RunEncounter(encounterID, this.Player);
 
-            song.Stop();
-
-
             return Player.CurrentHP <= 0;
+        }
+
+        public void DoPlayerInput(ConsoleKeyInfo input)
+        {
+            Console.Clear();
+            switch (input.Key)
+            {
+                case ConsoleKey.I:
+                    {
+                        if (this.Player.Inventory != null)
+                        {
+                            this.Player.ViewItemInventory();
+                        }
+                        else
+                        {
+                            DisplayMethods.DisplayInformation("Your Inventory Is Empty");
+                        }
+                        break;
+                    }
+                case ConsoleKey.V:
+                    {
+                        this.Player.ViewStatus();
+                        break;
+                    }
+                case ConsoleKey.Escape:
+                    {
+                        DisplayMethods.DisplayInformation("Paused...");
+                        break;
+                    }
+                case ConsoleKey.O:
+                    {
+                        this.Player.ViewSpells();
+                        break;
+                    }
+            }
+            DisplayMethods.DisplayInformation("Press Enter to Continue...", true);
+
+            Console.Clear();
+        }
+
+        public void TownReplenish()
+        {
+            Player.ReplenishStamina();
+            Player.ReplenishHp(true);
         }
     }
 }

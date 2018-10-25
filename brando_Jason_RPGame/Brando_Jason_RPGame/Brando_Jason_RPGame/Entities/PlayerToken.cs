@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using Brando_Jason_RPGMapping.Mapping;
+using BrandoJason_RPGEncounterLogic;
 
 namespace Brando_Jason_RPGMapping.Entities
 {
     public class PlayerToken : ICharacter
     {
         public bool DidMove { get; set; }
+
+        public EncounterProg CurrentEncounter { get; }
 
         public string Name { get; }
 
@@ -18,12 +21,13 @@ namespace Brando_Jason_RPGMapping.Entities
 
         public int Value { get; }
 
-        public PlayerToken()
+        public PlayerToken(EncounterProg encounter)
         {
             this.Position = new int[2];
             this.Position[0] = 1; //Position of i
             this.Position[1] = 1; //Position of j
             this.Value = -2;
+            this.CurrentEncounter = encounter;
         }
 
         public void Move(Map currentMap)
@@ -69,6 +73,15 @@ namespace Brando_Jason_RPGMapping.Entities
                         this.Position[1]--;
                     }
                     break;
+                case ConsoleKey.I:
+                case ConsoleKey.V:
+                case ConsoleKey.Escape:
+                case ConsoleKey.O:
+                    {
+                        CurrentEncounter.DoPlayerInput(input);
+                        Display_Map.DisplayMap(currentMap);
+                        break;
+                    }
                 default:
                     break;
             }

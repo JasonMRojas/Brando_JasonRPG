@@ -29,7 +29,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
             int height = 8, width = 20;
             while (newMap)
             {
-                PlayerToken player = new PlayerToken();
+                PlayerToken player = new PlayerToken(encounter);
 
                 Console.WriteLine("Loading New Map...");
                 Console.WriteLine("This may take up to 60 seconds...");
@@ -95,6 +95,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                         }
                         else if (tile.GetType() == typeof(TownMapTile) && IsColliding.IsCurrentlyColliding(currentTownMapTile, player))
                         {
+                            encounter.TownReplenish();
                             newMap = RunTownMap(encounter, player, townMap, currentTownMapTile, endTile);
                             isTownMap = true;
                         }
@@ -240,7 +241,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
             Console.Clear();
             Display_Map.DisplayMap(map);
             List<ICharacter> npcs = new List<ICharacter>();
-            ICharacter player = new PlayerToken();
+            ICharacter player = new PlayerToken(encounter);
             int tickCounter = 1;
             Random randomMovement = new Random();
             bool updateDisplay = false;
@@ -251,7 +252,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 tickDivision = 1;
             }
 
-            int randomTick = randomMovement.Next(20, 400 / tickDivision);
+            int randomTick = randomMovement.Next(20, 200 / tickDivision);
             while (true)
             {
                 foreach (ICharacter entity in entityPile)
@@ -277,7 +278,6 @@ namespace Brando_Jason_RPGMapping.GameRunning
                     else if (tickCounter == randomTick && toRemove != entity)
                     {
                         entity.Move(map);
-
                     }
                     foreach (Tile special in specialTilePile)
                     {
@@ -325,7 +325,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 if (tickCounter >= randomTick + 1)
                 {
                     tickCounter = 1;
-                    randomTick = randomMovement.Next(20, 400 / tickDivision);
+                    randomTick = randomMovement.Next(20, 200 / tickDivision);
                 }
 
                 npcs.Clear();
