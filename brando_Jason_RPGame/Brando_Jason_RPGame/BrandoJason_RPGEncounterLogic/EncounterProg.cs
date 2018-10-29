@@ -39,7 +39,7 @@ namespace BrandoJason_RPGEncounterLogic
                 "GoodLuck...",
             };
 
-            DisplayMethods.DisplayInformation(prompts, 2000);
+            DisplayMethods.DisplayInformation(prompts, 500);
 
             DisplayMethods.DisplayInformation(this.Player.Name, 300);
 

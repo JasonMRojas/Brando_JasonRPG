@@ -19,21 +19,19 @@ namespace Brando_Jason_RPGMapping.Mapping
         {
             string townMap = "";
             Random rand = new Random();
-            int randomStartSpot = rand.Next(0, 4);
+            int randomStartSpot = rand.Next(0, 11);
             using (StreamReader sr = new StreamReader("TownMaps.txt"))
             {
-                int loopTimer = 0;
                 string currentLine = sr.ReadLine(); // sr.ReadLine();
                 while(currentLine != randomStartSpot.ToString())
                 {
                     currentLine = sr.ReadLine();
-                    continue;
                 }
                 currentLine = sr.ReadLine();
                 while (currentLine != (randomStartSpot + 1).ToString())
                 {
                     townMap += currentLine + "\n\r";
-                    loopTimer++;
+                    Console.WriteLine("Reading Line from map");
                     currentLine = sr.ReadLine();
                 }
             }
@@ -53,7 +51,7 @@ namespace Brando_Jason_RPGMapping.Mapping
                     {
                         townMapArrayArray[i][j] = Wall.Value;
                     }
-                    if (rowArray[i][j] == ' ')
+                    else
                     {
                         townMapArrayArray[i][j] = Tile.Value;
                     }
