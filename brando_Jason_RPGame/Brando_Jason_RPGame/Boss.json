@@ -1,0 +1,22 @@
+{ "Boss": [
+	{
+		"name": "King Slime",
+		"hp": "30",
+		"mp": "15",
+		"stamina": "5",
+		"Def":"2",
+		"Atk":"3",
+		"MDef":"1",
+		"MAtk":"1",
+		"Luck":"2",
+		"exp":"10",
+		"gold":"25",
+		"level":"1",
+		"abilities": [
+				{
+				"Bounce";
+				"Heal";
+				}]	
+	}
+	]
+}

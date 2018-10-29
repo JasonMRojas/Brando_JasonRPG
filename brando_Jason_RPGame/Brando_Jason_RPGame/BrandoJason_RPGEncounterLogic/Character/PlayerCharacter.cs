@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using BrandoJason_RPGEncounterLogic.Display;
-using BrandoJason_RPGEncounterLogic.Monster;
+using BrandoJason_RPGEncounterLogic.Monsters;
 
 namespace BrandoJason_RPGEncounterLogic.Character
 {
@@ -244,7 +244,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
             Spells.Add(spell);
         }
 
-        public void PhysicalAttack(Normals monster)
+        public void PhysicalAttack(Monster monster)
         {
             this.CurrentStamina -= 1;
             if (this.CurrentStamina > -1)
@@ -273,7 +273,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
             System.Threading.Thread.Sleep(1000);
         }
 
-        public void MagicalAttack(Normals monster, string spellName)
+        public void MagicalAttack(Monster monster, string spellName)
         {
             Spell spellToCast = new Spell("You Have No Spells", 0, 0);
             foreach (Spell spell in Spells)

@@ -254,6 +254,15 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "Newtonsoft.Json/11.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "runtime.native.System.Data.SqlClient.sni/4.4.0": {
         "type": "package",
         "dependencies": {
@@ -1031,6 +1040,34 @@
         "netstandard.library.nuspec"
       ]
     },
+    "Newtonsoft.Json/11.0.2": {
+      "sha512": "IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "type": "package",
+      "path": "newtonsoft.json/11.0.2",
+      "files": [
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.11.0.2.nupkg.sha512",
+        "newtonsoft.json.nuspec"
+      ]
+    },
     "runtime.native.System.Data.SqlClient.sni/4.4.0": {
       "sha512": "A8v6PGmk+UGbfWo5Ixup0lPM4swuSwOiayJExZwKIOjTlFFQIsu3QnDXECosBEyrWSPryxBVrdqtJyhK3BaupQ==",
       "type": "package",
@@ -1087,10 +1124,11 @@
       ]
     },
     "StyleCop/5.0.0": {
-      "sha512": "uyhpJFORMpB32ChaMyX+5FqUrOaiB1K2SZfpUBm7T+7EYifURKk3Ho+J3Kcpwjh5OOzn9Ok+JAxRIq0gu5+i1A==",
+      "sha512": "mqXb5feeDGKasHDr17ZBDvrbw2GmPtmW6er33KitvTGaE8mQcAYHQohvLWR1yPSYHdVQAyByi6Ao+JPtYD8Mew==",
       "type": "package",
       "path": "stylecop/5.0.0",
       "files": [
+        ".signature.p7s",
         "lib/net40/StyleCop.dll",
         "lib/net40/StyleCop.xml",
         "stylecop.5.0.0.nupkg.sha512",
@@ -1916,29 +1954,30 @@
       "CSCore >= 1.2.1.2",
       "Dapper >= 1.50.5",
       "Microsoft.NETCore.App >= 2.1.0",
+      "Newtonsoft.Json >= 11.0.2",
       "StyleCop >= 5.0.0",
       "System.Data.SqlClient >= 4.5.1",
       "System.Runtime >= 4.3.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jason Rojas\\.nuget\\packages\\": {},
+    "C:\\Users\\Brandon Batel\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
+      "projectUniqueName": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
       "projectName": "BrandoJason_RPGEncounterLogic",
-      "projectPath": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
-      "packagesPath": "C:\\Users\\Jason Rojas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\obj\\",
+      "projectPath": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
+      "packagesPath": "C:\\Users\\Brandon Batel\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jason Rojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Brandon Batel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1974,6 +2013,10 @@
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[11.0.2, )"
           },
           "StyleCop": {
             "target": "Package",

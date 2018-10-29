@@ -2,7 +2,7 @@
 using BrandoJason_RPGEncounterLogic.Character;
 using System.Data.SqlClient;
 using System.Data;
-using BrandoJason_RPGEncounterLogic.Database;
+using BrandoJason_RPGEncounterLogic.DAL;
 using BrandoJason_RPGEncounterLogic.Encounter;
 using CSCore.CoreAudioAPI;
 using BrandoJason_RPGEncounterLogic.Sound;
@@ -14,7 +14,6 @@ namespace BrandoJason_RPGEncounterLogic
     public class EncounterProg
     {
         public PlayerCharacter Player { get; private set; }
-        public RPGDateBaseStorage Data { get; private set; }
 
         static void Main(string[] args)
         {
@@ -49,17 +48,14 @@ namespace BrandoJason_RPGEncounterLogic
             Console.Clear();
 
             this.Player.AwardExp(1);
-            this.Player.CheckIfLevelUp();
-
-            this.Data = new RPGDateBaseStorage();
-            Data.PopulateDataBase(@"Data Source = (local)\SQLEXPRESS; Initial Catalog = RPG; Integrated Security = True;");
+            this.Player.CheckIfLevelUp();         
         }
 
         public bool RunEncounterProg(int encounterID)
         {
-            EncounterRunning newEnounter = new EncounterRunning(Data);
+            EncounterRunning newEnounter = new EncounterRunning();
 
-            newEnounter.RunEncounter(encounterID, this.Player);
+            newEnounter.RunEncounter(this.Player);
 
             return Player.CurrentHP <= 0;
         }

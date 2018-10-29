@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using BrandoJason_RPGEncounterLogic.Encounter;
-using BrandoJason_RPGEncounterLogic.Database;
-using BrandoJason_RPGEncounterLogic.Monster;
+using BrandoJason_RPGEncounterLogic.DAL;
+using BrandoJason_RPGEncounterLogic.Monsters;
 using BrandoJason_RPGEncounterLogic.Character;
 using BrandoJason_RPGEncounterLogic.Display;
 using BrandoJason_RPGEncounterLogic.Sound;
@@ -13,27 +13,17 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
 {
     public class EncounterRunning
     {
-        RPGDateBaseStorage CurrentData { get; }
-        public EncounterRunning(RPGDateBaseStorage data)
-        {
-            this.CurrentData = data;
-        }
+      
 
-        public void RunEncounter(int encounterID, PlayerCharacter player)
+        public void RunEncounter(PlayerCharacter player)
         {
-            foreach (DataRow row in CurrentData.Monster.Rows)
-            {
-                if (int.Parse(row["monster_id"].ToString()) == encounterID)
-                {
-                    Normals newMonster = new Normals(row);
+            ReadMonster RM = new ReadMonster();
 
-                    RunEncounterLoop(newMonster, player);
-                }
-            }
+            RunEncounterLoop(RM.GetMonster(), player);
 
         }
 
-        private void RunEncounterLoop(Normals newMonster, PlayerCharacter player)
+        private void RunEncounterLoop(Monster newMonster, PlayerCharacter player)
         {
             var song = new Playable(new MusicPlayer());
             song.Play();

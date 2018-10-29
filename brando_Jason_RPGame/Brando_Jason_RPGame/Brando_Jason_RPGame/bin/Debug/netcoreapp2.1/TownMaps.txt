@@ -1,22 +1,93 @@
 0
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X                                           X
-X                                           X
-X                                           X
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X            XSX       N      X
+X            X X              X        
+X                   X X       X 
+X	N				XIX		  X 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 1
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X                                           X
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X                               X
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXX   X
-X                               X
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X           XW   AX     X IX
+X           X     X     XX X        
+XXXX        XXX XXX        X 
+XS						N  X 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+2 
+
+XXXXXXXXXXXXXXXXXXXXXXXX
+X    N      XAX   XWX  X 
+X                      X            
+X        XSX   XIX     X         
+XXXXXXXXXXXXXXXXXXXXXXXX
+
 3
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X  X  X  X  X  X  X  X  X             X
-X                         X           X
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+XXXXXXXXXXXXXXXXXXXXXXXX
+X          XAWX       NX 
+X                      X            
+X  NN    XSX   XIX     X         
+XXXXXXXXXXXXXXXXXXXXXXXX
+
 4
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X           XW  S  AX           XXXX
+X           X       X             NX 
+X           X       X    X   X  XXXX
+X	 N	N				 X I X  X 
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+5
+
+XXXXXXXXX
+X       X    
+X S  I  X           
+XXXXXXXXX  
+
+6
+
+XXXXXXXXXXXXXXXXXXXXXXXX
+X          XWX        NX   XXXXXXX
+X                      X   X  A  X    
+X  NN    XSX   XIX     X   X     X 
+XXXXXXXXXXXXX XXXXXXXXXX   XXX XXX
+            X X              X X
+			X XXXXXXXXXXXXXXXX X
+			X                  X
+			XXXXXXXXXXXXXXXXXXXX
+			
+7
+
+XXXXXXXXX
+X   W   X    
+XS     AX           
+XXXXXXXXX 
+
+8
+
+XXXXXXXXXXXXXX
+X          XIX
+X   N        X
+XXXXXXXXXXXXXX
+
+9
+
+XXXXXXXXXXXXXXXXXXXXXXXX
+X          XAX        NX   XXXXXXX
+X                      X   X  W  X    
+X  NN    XSX   XIX     X   X     X 
+XXXXXXXXXXXXX XXXXXXXXXX   XXX XXX
+            X X              X X
+			X XXXXXXXXXXXXXXXX X
+			X                  X
+			XXXXXXXXXXXXXXXXXXXX
+			
+10
+
+XXXXXXXXXXXXXX
+X          XIX
+X   N        X
+XXXXXXXXXXXXXX

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 
-namespace BrandoJason_RPGEncounterLogic.Monster
+namespace BrandoJason_RPGEncounterLogic.Monsters
 {
     public class Ability
     {

@@ -4,13 +4,15 @@ using System.Text;
 using System.Data;
 using BrandoJason_RPGEncounterLogic.Character;
 using BrandoJason_RPGEncounterLogic.Display;
+using System.IO;
+using Newtonsoft.Json;
 
-
-namespace BrandoJason_RPGEncounterLogic.Monster
+namespace BrandoJason_RPGEncounterLogic.Monsters
 {
-    public class Normals
+
+
+    public class Monster
     {
-        public int MonsterID { get; }
         public string Name { get; }
         public int CurrentHP { get; set; }
         public int MaxHP { get; set; }
@@ -28,28 +30,7 @@ namespace BrandoJason_RPGEncounterLogic.Monster
         public int Level { get; set; }
         //public Ability MonsterAbilities { get; }
 
-        public Normals(DataRow monster) //DataTable abilities)
-        {
 
-            this.MonsterID = int.Parse(monster["monster_id"].ToString());
-            this.Name = monster["name"].ToString();
-            this.CurrentHP = int.Parse(monster["hp"].ToString());
-            this.MaxHP = int.Parse(monster["hp"].ToString());
-            this.CurrentMP = int.Parse(monster["mp"].ToString());
-            this.MaxMP = int.Parse(monster["mp"].ToString());
-            this.CurrentStamina = int.Parse(monster["stam"].ToString());
-            this.MaxStamina = int.Parse(monster["stam"].ToString());
-            this.Defense = int.Parse(monster["def"].ToString());
-            this.Attack = int.Parse(monster["atk"].ToString());
-            this.MagAttack = int.Parse(monster["matk"].ToString());
-            this.MagDefense = int.Parse(monster["mdef"].ToString());
-            this.Luck = int.Parse(monster["luck"].ToString());
-            this.Exp = int.Parse(monster["exp"].ToString());
-            this.Gold = int.Parse(monster["gold"].ToString());
-            this.Level = int.Parse(monster["lvl"].ToString());
-
-            //this.MonsterAbilities = new Ability(this.MonsterID);
-        }
 
         public void Act(PlayerCharacter player)
         {
@@ -69,7 +50,7 @@ namespace BrandoJason_RPGEncounterLogic.Monster
             {
                 $"The {this.Name} Attacked!!!",
                 $"It dealt {dealtDamage} dmg!!!",
-                $"Wow such spook"
+                $"Wow such spoop"
             };
 
             DisplayMethods.DisplayInformation(prompts);
