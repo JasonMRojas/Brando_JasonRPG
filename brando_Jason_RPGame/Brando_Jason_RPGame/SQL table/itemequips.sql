@@ -27,7 +27,9 @@ CREATE TABLE Equipable_Items
 	name			varchar(20)		not null,
 	price			int				not null,
 	slotLocation	char(1)			not null,
+	constraint pk_equip primary key (equip_id)
 )	
+
 
 CREATE TABLE Stat_Values
 (
@@ -51,10 +53,19 @@ CREATE TABLE Effects
 	effects_id		int				identity(1, 1),
 	name			varchar(20)		not null,
 	stat_value_id	int				not null,
+	constraint pk_effects primary key (effects_id),
 	constraint fk_stat_value_effects foreign key (stat_value_id) references Stat_Values(stat_value_id)
 )	
 
+CREATE TABLE equip_effects
+(
+	equip_id		int				NOT NULL,
+	effects_id		int				NOT NULL,
 
+	constraint fk_equip_ee foreign key (equip_id) references Equipable_Items(equip_id),
+	constraint fk_effect_ee foreign key (effects_id) references Effects(effects_id)
+
+)
 
 insert into Effects (name, stat_value_id)
 values ('potion', 1)
@@ -92,7 +103,8 @@ values (3, 0, 1, 0, 0, 0, 3, 1, 1, 1, 5, 'Slime')
 insert into Abilities
 values ('Wiggle', 1)
 
-
+INSERT INTO Equipable_Items
+VALUES ('Iron Sword', 10, 'W');
 
 insert into Usuable_Items (name, price, isPerm)
 values ('potion', 10, 0)

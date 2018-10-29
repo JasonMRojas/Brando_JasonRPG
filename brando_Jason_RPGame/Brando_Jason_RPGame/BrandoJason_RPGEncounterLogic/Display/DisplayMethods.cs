@@ -39,7 +39,13 @@ namespace BrandoJason_RPGEncounterLogic.Display
         public static string DisplayInformation(string prompt, bool userInput)
         {
             Console.WriteLine(prompt);
-            return Console.ReadLine();
+
+            string input = "";
+            while (input.Length == 0)
+            {
+                input = Console.ReadLine();
+            }
+            return input;
         }
 
         public static void DisplayInformation(string prompt, int timeToWaitBetweenEachLetter)
