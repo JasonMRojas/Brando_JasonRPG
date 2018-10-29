@@ -81,7 +81,9 @@ namespace Brando_Jason_RPGMapping.GameRunning
                                 && !map.IsNextTo(map.MapArrayOfArrays, northOfCurrentPosition, TownMapTile.Value)
                                 && !map.IsNextTo(map.MapArrayOfArrays, northOfCurrentPosition, CaveTile.Value)
                                 && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, TownMapTile.Value)
-                                && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, CaveTile.Value))
+                                && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, CaveTile.Value)
+                                && map.MapArrayOfArrays[i][j] != CaveTile.Value
+                                && map.MapArrayOfArrays[i][j] != TownMapTile.Value)
                             {
                                 tilePlaced = true;
                                 break;
