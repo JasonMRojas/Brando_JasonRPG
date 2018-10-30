@@ -28,7 +28,7 @@ namespace Brando_Jason_RPGMapping.Mapping
                     currentLine = sr.ReadLine();
                 }
                 currentLine = sr.ReadLine();
-                while (currentLine != (randomStartSpot + 1).ToString())
+                while (currentLine != (randomStartSpot + 1).ToString() && !sr.EndOfStream)
                 {
                     townMap += currentLine + "\n\r";
                     Console.WriteLine("Reading Line from map");

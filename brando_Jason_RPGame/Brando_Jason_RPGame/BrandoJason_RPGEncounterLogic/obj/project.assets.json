@@ -1124,11 +1124,10 @@
       ]
     },
     "StyleCop/5.0.0": {
-      "sha512": "mqXb5feeDGKasHDr17ZBDvrbw2GmPtmW6er33KitvTGaE8mQcAYHQohvLWR1yPSYHdVQAyByi6Ao+JPtYD8Mew==",
+      "sha512": "uyhpJFORMpB32ChaMyX+5FqUrOaiB1K2SZfpUBm7T+7EYifURKk3Ho+J3Kcpwjh5OOzn9Ok+JAxRIq0gu5+i1A==",
       "type": "package",
       "path": "stylecop/5.0.0",
       "files": [
-        ".signature.p7s",
         "lib/net40/StyleCop.dll",
         "lib/net40/StyleCop.xml",
         "stylecop.5.0.0.nupkg.sha512",
@@ -1961,23 +1960,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Brandon Batel\\.nuget\\packages\\": {},
+    "C:\\Users\\Jason Rojas\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
+      "projectUniqueName": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
       "projectName": "BrandoJason_RPGEncounterLogic",
-      "projectPath": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
-      "packagesPath": "C:\\Users\\Brandon Batel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Brandon Batel\\Documents\\Game Project JR\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\obj\\",
+      "projectPath": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\BrandoJason_RPGEncounterLogic.csproj",
+      "packagesPath": "C:\\Users\\Jason Rojas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Jason Rojas\\source\\repos\\brando_jason_rpggame\\brando_Jason_RPGame\\Brando_Jason_RPGame\\BrandoJason_RPGEncounterLogic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Brandon Batel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Jason Rojas\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -1,9 +1,9 @@
 0
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X            XSX       N      X
+X            XSX              X
 X            X X              X
 X                   X X       X
-X	N  XIX            X       X
+X   N  XIX            X       X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 1
 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -12,7 +12,7 @@ X           X     X     XX X
 XXXX        XXX XXX        X
 XS          N              X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2 
+2
 XXXXXXXXXXXXXXXXXXXXXXXX
 X    N      XAX   XWX  X
 X                      X

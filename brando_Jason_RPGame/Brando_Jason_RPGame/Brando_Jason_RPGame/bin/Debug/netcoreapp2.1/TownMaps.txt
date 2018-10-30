@@ -1,87 +1,18 @@
 0
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X            XSX       N      X
-<<<<<<< HEAD
-X            X X              X        
-X                   X X       X 
-X	N				XIX		  X 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-1
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X           XW   AX     X IX
-X           X     X     XX X        
-XXXX        XXX XXX        X 
-XS						N  X 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-2 
-
-XXXXXXXXXXXXXXXXXXXXXXXX
-X    N      XAX   XWX  X 
-X                      X            
-X        XSX   XIX     X         
-XXXXXXXXXXXXXXXXXXXXXXXX
-
-3
-
-XXXXXXXXXXXXXXXXXXXXXXXX
-X          XAWX       NX 
-X                      X            
-X  NN    XSX   XIX     X         
-XXXXXXXXXXXXXXXXXXXXXXXX
-
-4
-
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-X           XW  S  AX           XXXX
-X           X       X             NX 
-X           X       X    X   X  XXXX
-X	 N	N				 X I X  X 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
-5
-
-XXXXXXXXX
-X       X    
-X S  I  X           
-XXXXXXXXX  
-
-6
-
-XXXXXXXXXXXXXXXXXXXXXXXX
-X          XWX        NX   XXXXXXX
-X                      X   X  A  X    
-X  NN    XSX   XIX     X   X     X 
-XXXXXXXXXXXXX XXXXXXXXXX   XXX XXX
-            X X              X X
-			X XXXXXXXXXXXXXXXX X
-			X                  X
-			XXXXXXXXXXXXXXXXXXXX
-			
-7
-
-XXXXXXXXX
-X   W   X    
-XS     AX           
-XXXXXXXXX 
-
-8
-
-=======
+X            XSX              X
 X            X X              X
 X                   X X       X
-X	N  XIX		      X		  X
+X   N  XIX            X       X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 1
 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
 X           XW   AX     X IX
 X           X     X     XX X
 XXXX        XXX XXX        X
-XS			N              X
+XS          N              X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXX
-2 
+2
 XXXXXXXXXXXXXXXXXXXXXXXX
 X    N      XAX   XWX  X
 X                      X
@@ -121,28 +52,10 @@ X   W   X
 XS     AX
 XXXXXXXXX
 8
->>>>>>> 25e0670df358f6c6956b0ff7d27d50f7a86be63c
 XXXXXXXXXXXXXX
 X          XIX
 X   N        X
 XXXXXXXXXXXXXX
-<<<<<<< HEAD
-
-9
-
-XXXXXXXXXXXXXXXXXXXXXXXX
-X          XAX        NX   XXXXXXX
-X                      X   X  W  X    
-X  NN    XSX   XIX     X   X     X 
-XXXXXXXXXXXXX XXXXXXXXXX   XXX XXX
-            X X              X X
-			X XXXXXXXXXXXXXXXX X
-			X                  X
-			XXXXXXXXXXXXXXXXXXXX
-			
-10
-
-=======
 9
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 X          XWX        AXXXXXXXXXXX
@@ -154,12 +67,8 @@ XXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXX
 XXXXXXXXXXXXX                  XXX
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 10
->>>>>>> 25e0670df358f6c6956b0ff7d27d50f7a86be63c
 XXXXXXXXXXXXXX
 X          XIX
 X   N        X
 XXXXXXXXXXXXXX
-<<<<<<< HEAD
-=======
 11
->>>>>>> 25e0670df358f6c6956b0ff7d27d50f7a86be63c

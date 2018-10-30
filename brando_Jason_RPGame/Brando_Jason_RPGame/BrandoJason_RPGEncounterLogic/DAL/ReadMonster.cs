@@ -11,16 +11,20 @@ namespace BrandoJason_RPGEncounterLogic.DAL
     {
         public Monster GetMonster()
         {
-            using (StreamReader reader = new StreamReader("Monsters.json"))
+            using (StreamReader reader = new StreamReader("DAL\\Monsters.json"))
             {
                 string json = reader.ReadToEnd();
-                List<Monster> monsters = JsonConvert.DeserializeObject<List<Monster>>(json);
+                JSONConversion newJsonConversion = JsonConvert.DeserializeObject<JSONConversion>(json);
 
                 Random rnd = new Random();
 
-                return monsters[rnd.Next(0, monsters.Count)];
+                return newJsonConversion.Monsters[rnd.Next(0, newJsonConversion.Monsters.Count)];
             }
-       
         }       
+    }
+
+    public class JSONConversion
+    {
+        public List<Monster> Monsters { get; set; }
     }
 }

@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <None Update="DAL\Monsters.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Lufia_2_Music_-_Battle_Theme1-NFvwTKzWrLg.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

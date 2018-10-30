@@ -246,13 +246,8 @@ namespace Brando_Jason_RPGMapping.GameRunning
             Random randomMovement = new Random();
             bool updateDisplay = false;
             bool gameOver = false;
-            int tickDivision = map.MapArrayOfArrays[0].Length / 10;
-            if (tickDivision < 1)
-            {
-                tickDivision = 1;
-            }
 
-            int randomTick = randomMovement.Next(20, 200 / tickDivision);
+            int randomTick = randomMovement.Next(100, 200);
             while (true)
             {
                 foreach (ICharacter entity in entityPile)
@@ -308,7 +303,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                         }
                     }
                     map.BuildMapDisplay();
-
+                    npcs.Remove(toRemove);
                     if (entity.DidMove)
                     {
                         updateDisplay = true;
@@ -325,7 +320,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 if (tickCounter >= randomTick + 1)
                 {
                     tickCounter = 1;
-                    randomTick = randomMovement.Next(20, 200 / tickDivision);
+                    randomTick = randomMovement.Next(100, 200);
                 }
 
                 npcs.Clear();

@@ -9,11 +9,9 @@ using Newtonsoft.Json;
 
 namespace BrandoJason_RPGEncounterLogic.Monsters
 {
-
-
     public class Monster
     {
-        public string Name { get; }
+        public string Name { get; set; }
         public int CurrentHP { get; set; }
         public int MaxHP { get; set; }
         public int CurrentMP { get; set; }
