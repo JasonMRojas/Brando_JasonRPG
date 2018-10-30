@@ -25,7 +25,7 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
 
         private void RunEncounterLoop(Monster newMonster, PlayerCharacter player)
         {
-            var song = new Playable(new MusicPlayer());
+            var song = new Playable(new MusicPlayer(), Track.Battle);
             song.Play();
 
             System.Threading.Thread.Sleep(1000);

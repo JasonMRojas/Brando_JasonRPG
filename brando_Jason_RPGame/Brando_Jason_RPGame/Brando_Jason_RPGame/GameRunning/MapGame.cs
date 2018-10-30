@@ -4,6 +4,7 @@ using System.Text;
 using Brando_Jason_RPGMapping.Entities;
 using Brando_Jason_RPGMapping.Mapping;
 using BrandoJason_RPGEncounterLogic;
+using BrandoJason_RPGEncounterLogic.Sound;
 
 namespace Brando_Jason_RPGMapping.GameRunning
 {
@@ -210,9 +211,13 @@ namespace Brando_Jason_RPGMapping.GameRunning
 
             AddEntitiesAndTilesToMap(townMap, townSpecialTilePile, townEntityPile);
 
+            var song = new Playable(new MusicPlayer(), Track.Town);
+            song.Play();
+
             bool nextMap = RunMapGameLoop(townMap, townEntityPile, townSpecialTilePile, encounter);
             ClearMap(townMap, townEntityPile);
 
+            song.Stop();
             player.Position[0] = currentTownMapTile.Position[0];
             player.Position[1] = currentTownMapTile.Position[1] + 1;
 

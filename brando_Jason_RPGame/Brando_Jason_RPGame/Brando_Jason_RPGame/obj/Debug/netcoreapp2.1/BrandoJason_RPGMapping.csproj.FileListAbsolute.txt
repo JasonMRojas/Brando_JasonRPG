@@ -31,3 +31,5 @@ C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brand
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\BrandoJason_RPGMapping.csproj.CopyComplete
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\BrandoJason_RPGMapping.dll
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\obj\Debug\netcoreapp2.1\BrandoJason_RPGMapping.pdb
+C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Intro.wav
+C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\Brando_Jason_RPGame\bin\Debug\netcoreapp2.1\Town.wav

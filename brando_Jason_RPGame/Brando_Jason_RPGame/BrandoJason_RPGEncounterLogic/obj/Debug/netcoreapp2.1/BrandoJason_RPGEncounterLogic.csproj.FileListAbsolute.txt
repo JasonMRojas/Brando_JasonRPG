@@ -23,3 +23,4 @@ C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brand
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\obj\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.AssemblyInfo.cs
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\obj\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.dll
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\obj\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.pdb
+C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\bin\Debug\netcoreapp2.1\Intro.wav

@@ -22,6 +22,9 @@
     <None Update="Mapping\TownMaps.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Town.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TownMaps.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

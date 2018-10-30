@@ -28,7 +28,7 @@ namespace BrandoJason_RPGEncounterLogic.Sound
         private Playable Open(Track track)
         {
             OpenWithoutPlayable(track);
-            return new Playable(this);
+            return new Playable(this, track);
         }
 
         public void OpenWithoutPlayable(Track track)

@@ -14,10 +14,10 @@ namespace BrandoJason_RPGEncounterLogic.Sound
         public Track Track { get; private set; }
         private bool StopRequested { get; set; }
 
-        public Playable(MusicPlayer player)
+        public Playable(MusicPlayer player, Track track)
         {
             _player = player;
-            this.Track = 0;
+            this.Track = track;
         }
 
         public void Play(bool open = true)
@@ -49,7 +49,9 @@ namespace BrandoJason_RPGEncounterLogic.Sound
 
     public enum Track
     {
-         Battle = 0
+         Battle = 0,
+         Intro = 1,
+         Town = 2,
     }
 
     public static class EnumExtensions
@@ -61,6 +63,12 @@ namespace BrandoJason_RPGEncounterLogic.Sound
             {
                 case Track.Battle:
                     fileName = "Lufia_2_Music_-_Battle_Theme1-NFvwTKzWrLg.wav";
+                    break;
+                case Track.Intro:
+                    fileName = "Intro.wav";
+                    break;
+                case Track.Town:
+                    fileName = "Town.wav";
                     break;
                 default:
                     break;

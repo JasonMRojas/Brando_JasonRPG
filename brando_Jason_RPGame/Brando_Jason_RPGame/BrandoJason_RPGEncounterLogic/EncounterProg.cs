@@ -22,6 +22,8 @@ namespace BrandoJason_RPGEncounterLogic
 
         public void RunCharacterCreation()
         {
+            var song = new Playable(new MusicPlayer(), Track.Intro);
+            song.Play();
             List<string> getName = new List<string>()
             {
                 "Enter Name: "
@@ -48,7 +50,8 @@ namespace BrandoJason_RPGEncounterLogic
             Console.Clear();
 
             this.Player.AwardExp(1);
-            this.Player.CheckIfLevelUp();         
+            this.Player.CheckIfLevelUp();
+            song.Stop();
         }
 
         public bool RunEncounterProg(int encounterID)
