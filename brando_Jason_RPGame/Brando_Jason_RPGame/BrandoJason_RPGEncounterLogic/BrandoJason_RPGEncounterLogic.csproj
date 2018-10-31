@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="DAL\Abilities.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="DAL\Monsters.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

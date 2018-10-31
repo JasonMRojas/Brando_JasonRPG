@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Brando_Jason_RPGMapping.Entities;
 
-namespace Brando_Jason_RPGMapping.Mapping
+namespace BrandoJason_RPGMapping.Mapping
 {
     public class Map
     {
@@ -167,6 +167,25 @@ namespace Brando_Jason_RPGMapping.Mapping
                                 || mapMazeArray[position[0] - 1][position[1]] == value;
         }
 
+        public int[] FindPosition(int value)
+        {
+            int[] position = new int[2];
+
+            for (int i = 0; i < MapArrayOfArrays.Length; i++)
+            {
+                for (int j = 0; j < MapArrayOfArrays[i].Length; j++)
+                {
+                    if (MapArrayOfArrays[i][j] == value)
+                    {
+                        position[0] = i;
+                        position[1] = j;
+                        break;
+                    }
+                }
+            }
+
+            return position;
+        }
 
         /// <summary>
         /// Checks if a generic position is surrounded by a value
@@ -295,6 +314,10 @@ namespace Brando_Jason_RPGMapping.Mapping
                     else if (row[j] == ExitTile.Value)
                     {
                         mapDisplay += ExitTile.Display;
+                    }
+                    else if(row[j] == InnTile.Value)
+                    {
+                        mapDisplay += InnTile.Display;
                     }
 
                 }

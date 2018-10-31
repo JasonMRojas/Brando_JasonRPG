@@ -54,11 +54,20 @@ namespace BrandoJason_RPGEncounterLogic
             song.Stop();
         }
 
-        public bool RunEncounterProg(int encounterID)
+        public bool RunEncounterProg(int currentLevel)
         {
             EncounterRunning newEnounter = new EncounterRunning();
 
-            newEnounter.RunEncounter(this.Player);
+            newEnounter.RunEncounter(this.Player, currentLevel);
+
+            return Player.CurrentHP <= 0;
+        }
+
+        public bool RunEncounterProg(bool isBoss, int currentLevel)
+        {
+            EncounterRunning newEnounter = new EncounterRunning();
+
+            newEnounter.RunEncounter(this.Player, currentLevel);
 
             return Player.CurrentHP <= 0;
         }

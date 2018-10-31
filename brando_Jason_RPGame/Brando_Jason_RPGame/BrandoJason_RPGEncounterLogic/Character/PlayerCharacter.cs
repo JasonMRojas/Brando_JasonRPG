@@ -301,5 +301,24 @@ namespace BrandoJason_RPGEncounterLogic.Character
             DisplayMethods.DisplayInformation(prompts);
             System.Threading.Thread.Sleep(1000);
         }
+
+        /*public void UseInn()
+        {
+            Console.Clear();
+            Console.WriteLine("*************************");
+            Console.WriteLine("*Would you like to Rest?*");
+            Console.WriteLine("*         (y/n)         *");
+            Console.WriteLine($"*Gold Cost={this.Level * 5}*");
+            Console.WriteLine("*************************");
+            Console.WriteLine();
+            string input = Console.ReadLine();
+            if(input == "y")
+            {
+
+            }
+            */
+        }
     }
 }
+
+

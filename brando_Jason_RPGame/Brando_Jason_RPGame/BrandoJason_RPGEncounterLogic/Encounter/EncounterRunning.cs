@@ -15,11 +15,11 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
     {
       
 
-        public void RunEncounter(PlayerCharacter player)
+        public void RunEncounter(PlayerCharacter player, int currentLevel)
         {
             ReadMonster RM = new ReadMonster();
 
-            RunEncounterLoop(RM.GetMonster(), player);
+            RunEncounterLoop(RM.GetMonster(currentLevel), player);
 
         }
 
@@ -52,7 +52,7 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                     "",
                     "",
                     $"{player.Name} | HP: {player.CurrentHP} | MP: {player.CurrentMP} | Stam: {player.CurrentStamina}",
-                    "Player Input (1, 2):"
+                    "Player Input (1, 2, R):"
                 };
                 while (true)
                 {

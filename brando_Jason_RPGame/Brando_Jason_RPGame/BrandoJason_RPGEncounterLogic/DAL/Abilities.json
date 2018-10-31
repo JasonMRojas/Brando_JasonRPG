@@ -1,0 +1,55 @@
+{
+  "Abilities": [
+    {
+      "Name": "Wiggle",
+      "Dialog": "wiggles methodically... its hypnotizing... \n\rYou Have Been Healed!",
+      "HP": 2,
+      "MP": 0,
+      "Stamina": 0,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 50
+    },
+    {
+      "Name": "Restore",
+      "Dialog": "sits down and eats 30 apples, restoring its Stamina, Health, and magic power.",
+      "HP": 1,
+      "MP": 1,
+      "Stamina": 1,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 2,
+      "MagDefense": 0,
+      "IsAttack": false,
+      "Chance": 40
+    },
+    {
+      "Name": "Charge Up",
+      "Dialog": "charges up its attack.",
+      "HP": 0,
+      "MP": 0,
+      "Stamina": 0,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 2,
+      "MagDefense": 0,
+      "IsAttack": false,
+      "Chance": 50
+    },
+    {
+      "Name": "Rain",
+      "Dialog": "gushes a storm of rain at you",
+      "HP": 0,
+      "MP": 2,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 2,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 20
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Brando_Jason_RPGMapping.Entities;
-using Brando_Jason_RPGMapping.Mapping;
+using BrandoJason_RPGMapping.Mapping;
 using BrandoJason_RPGEncounterLogic;
 using BrandoJason_RPGEncounterLogic.Sound;
 
@@ -74,19 +74,10 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 bool isCaveMap = true;
                 while (isTownMap || isCaveMap)
                 {
-                    entityPile.Add(player);
-                    endTile.Position[0] = map.MapArrayOfArrays.Length - 2;
-                    endTile.Position[1] = map.MapArrayOfArrays[0].Length - 2;
+                    newMap = RunWorldMap(encounter, player, map, specialTilePile, randomSeed, endTile, entityPile);
+
                     isTownMap = false;
                     isCaveMap = false;
-
-                    AddEntitiesAndTilesToMap(map, specialTilePile, randomSeed, entityPile);
-
-                    map.BuildMapDisplay();
-
-                    newMap = RunMapGameLoop(map, entityPile, specialTilePile, encounter);
-                    ClearMap(map, entityPile);
-
                     foreach (Tile tile in specialTilePile)
                     {
                         if (tile.GetType() == typeof(CaveTile) && IsColliding.IsCurrentlyColliding(tile, player))
@@ -114,6 +105,23 @@ namespace Brando_Jason_RPGMapping.GameRunning
             }
 
             Console.WriteLine("Game Over");
+        }
+
+        private bool RunWorldMap(EncounterProg encounter, PlayerToken player, Map map, List<Tile> specialTilePile, int randomSeed, ExitTile endTile, List<ICharacter> entityPile)
+        {
+            entityPile.Add(player);
+            endTile.Position[0] = map.MapArrayOfArrays.Length - 2;
+            endTile.Position[1] = map.MapArrayOfArrays[0].Length - 2;
+
+
+            AddEntitiesAndTilesToMap(map, specialTilePile, randomSeed, entityPile);
+
+            map.BuildMapDisplay();
+
+            bool newMap = RunMapGameLoop(map, entityPile, specialTilePile, encounter);
+            ClearMap(map, entityPile);
+
+            return newMap;
         }
 
         private static void AddEntitiesAndTilesToMap(Map map, List<Tile> specialTilePile, int randomSeed, List<ICharacter> entityPile)
@@ -205,8 +213,12 @@ namespace Brando_Jason_RPGMapping.GameRunning
             townEntityPile.Add(player);
 
             List<Tile> townSpecialTilePile = new List<Tile>()
-            { 
-                endTile
+            {
+                endTile,
+                new InnTile()
+                {
+                    Position = townMap.FindPosition(InnTile.Value)
+                }
             };
 
             AddEntitiesAndTilesToMap(townMap, townSpecialTilePile, townEntityPile);
@@ -282,7 +294,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
                     foreach (Tile special in specialTilePile)
                     {
                         map.SetTilePosition(special.Position, special.InstanValue);
-                        if (IsColliding.IsCurrentlyColliding(special, entity) && entity.GetType() == typeof(PlayerToken))
+                        if (IsColliding.IsCurrentlyColliding(special, entity) && entity.GetType() == typeof(PlayerToken) && special.GetType() != typeof(InnTile))
                         {
                             map.SetEntityPosition(entity);
                             map.BuildMapDisplay();
@@ -298,13 +310,19 @@ namespace Brando_Jason_RPGMapping.GameRunning
                             map.BuildMapDisplay();
                             Display_Map.DisplayMap(map);
 
-                            gameOver = encounter.RunEncounterProg(npc.EncounterLevel);
+                            gameOver = encounter.RunEncounterProg(_currentLevel);
 
                             isOver = gameOver;
 
                             toRemove = npc;
 
                             Console.Clear();
+                            
+                            if (!gameOver)
+                            {
+                                map.BuildMapDisplay();
+                                Display_Map.DisplayMap(map);
+                            }
                         }
                     }
                     map.BuildMapDisplay();

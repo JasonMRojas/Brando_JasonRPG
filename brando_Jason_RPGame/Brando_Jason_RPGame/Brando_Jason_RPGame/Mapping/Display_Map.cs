@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Brando_Jason_RPGMapping.Mapping
+namespace BrandoJason_RPGMapping.Mapping
 {
     public abstract class Display_Map
     {
@@ -111,7 +111,7 @@ namespace Brando_Jason_RPGMapping.Mapping
 
         private static bool CheckIfSpecial(char character)
         {
-            return character != 'P' && character != 'D' && character != 'C' && character != 'E' && character != 'T';
+            return character != 'P' && character != 'D' && character != 'C' && character != 'E' && character != 'T' && character != 'I';
         }
 
         private static void PlaceColoredCharacter(char character)
@@ -139,6 +139,11 @@ namespace Brando_Jason_RPGMapping.Mapping
             else if (character == 'D')
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(character);
+            }
+            else if (character == 'I')
+            {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write(character);
             }
         }

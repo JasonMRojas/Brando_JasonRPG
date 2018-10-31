@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Brando_Jason_RPGMapping.Mapping
+namespace BrandoJason_RPGMapping.Mapping
 {
     public class CaveTile : Tile
     {

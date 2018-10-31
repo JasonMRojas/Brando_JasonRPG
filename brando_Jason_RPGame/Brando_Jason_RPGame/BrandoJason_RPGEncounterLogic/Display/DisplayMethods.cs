@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BrandoJason_RPGEncounterLogic.Display
 {
@@ -33,7 +34,7 @@ namespace BrandoJason_RPGEncounterLogic.Display
 
         public static void DisplayInformation(string prompt)
         {
-            Console.WriteLine(prompt);
+            WordWrap(prompt);
         }
 
         public static string DisplayInformation(string prompt, bool userInput)
@@ -47,7 +48,7 @@ namespace BrandoJason_RPGEncounterLogic.Display
 
         public static void DisplayInformation(string prompt, int timeToWaitBetweenEachLetter)
         {
-            foreach (Char character in prompt)
+            foreach (char character in prompt)
             {
                 Console.Write(character);
                 System.Threading.Thread.Sleep(timeToWaitBetweenEachLetter);
@@ -74,6 +75,26 @@ namespace BrandoJason_RPGEncounterLogic.Display
             }
 
             return input;
+        }
+
+        private static void WordWrap(string paragraph)
+        {
+            paragraph = new Regex(@" {2,}").Replace(paragraph.Trim(), @" ");
+            var left = Console.CursorLeft;
+            var top = Console.CursorTop;
+            var lines = new List<string>();
+            for (var i = 0; paragraph.Length > 0; i++)
+            {
+                lines.Add(paragraph.Substring(0, Math.Min(Console.WindowWidth, paragraph.Length)));
+                var length = lines[i].LastIndexOf(" ", StringComparison.Ordinal);
+                if (length > 0)
+                {
+                    lines[i] = lines[i].Remove(length);
+                }
+                paragraph = paragraph.Substring(Math.Min(lines[i].Length + 1, paragraph.Length));
+                Console.SetCursorPosition(left, top + i);
+                Console.WriteLine(lines[i]);
+            }
         }
     }
 }

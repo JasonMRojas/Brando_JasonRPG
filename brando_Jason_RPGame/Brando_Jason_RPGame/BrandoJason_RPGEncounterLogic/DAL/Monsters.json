@@ -1,37 +1,61 @@
-{ "Monsters":[
-		{
-			"Name": "Slime",
-			"CurrentHP": "3",
-			"MaxHP": "3",
-			"CurrentMP": "0",
-			"MaxMP": "0",
-			"CurrentStamina": "3",
-			"MaxStamina": "3",
-			"Defense": "0",
-			"Attack": "1",
-			"MagDefense": "0",
-			"MagAttack": "0",
-			"Luck": "1",
-			"Exp": "2",
-			"Gold": "2",
-			"Level": "1"
-		},
-		{
-			"Name": "Ugly Goblin",
-			"CurrentHP": "5",
-			"MaxHP": "5",
-			"CurrentMP": "0",
-			"MaxMP": "0",
-			"CurrentStamina": "2",
-			"MaxStamina": "2",
-			"Defense": "0",
-			"Attack": "1",
-			"MagDefense": "0",
-			"MagAttack": "0",
-			"Luck": "0",
-			"Exp": "3",
-			"Gold": "2",
-			"Level": "1"
-		}
-	]
+{
+  "Monsters": [
+    {
+      "Name": "Slime",
+      "CurrentHP": "3",
+      "MaxHP": "3",
+      "CurrentMP": "0",
+      "MaxMP": "0",
+      "CurrentStamina": "3",
+      "MaxStamina": "3",
+      "Defense": "0",
+      "Attack": "1",
+      "MagDefense": "0",
+      "MagAttack": "0",
+      "Luck": "1",
+      "Exp": "1",
+      "Gold": "2",
+      "Level": "1",
+      "AbilityNames": [ "Wiggle" ],
+      "Lore": "A amalgamation of sludge, given life my magic causing it to become transparent and colored. Its mezmerizing form often can lure in children for it to eat; however, adults find themselves soothed by its movements."
+    },
+    {
+      "Name": "Ugly Goblin",
+      "CurrentHP": "5",
+      "MaxHP": "5",
+      "CurrentMP": "0",
+      "MaxMP": "0",
+      "CurrentStamina": "2",
+      "MaxStamina": "2",
+      "Defense": "0",
+      "Attack": "1",
+      "MagDefense": "0",
+      "MagAttack": "0",
+      "Luck": "3",
+      "Exp": "2",
+      "Gold": "2",
+      "Level": "1",
+      "AbilityNames": [ "Restore" ],
+      "Lore": "Unlike normal goblins, this one is exceptionally ugly. So ugly in fact that not even the goblins wanted to keep them around. Cast out from their tribe and hungry this goblin is by far the weakest of its breathern."
+    },
+    {
+      "Name": "Fluffy Cloud",
+      "CurrentHP": "4",
+      "MaxHP": "4",
+      "CurrentMP": "10",
+      "MaxMP": "10",
+      "CurrentStamina": "5",
+      "MaxStamina": "5",
+      "Defense": "999",
+      "Attack": "0",
+      "MagDefense": "0",
+      "MagAttack": "2",
+      "Luck": "0",
+      "Exp": "3",
+      "Gold": "2",
+      "Level": "1",
+      "AbilityNames": [ "Charge Up", "Rain", "Restore" ],
+      "Lore": "Fluffy Clouds are dangerous predators that disguise themselves as harmless gas. Once a target has been chosen they dissolve it in water and then evaporate the remains: consuming the produced vapor as food."
+    }
+  ]
 }

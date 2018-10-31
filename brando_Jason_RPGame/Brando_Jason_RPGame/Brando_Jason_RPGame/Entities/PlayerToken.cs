@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Brando_Jason_RPGMapping.Mapping;
+using BrandoJason_RPGMapping.Mapping;
 using BrandoJason_RPGEncounterLogic;
 
 namespace Brando_Jason_RPGMapping.Entities

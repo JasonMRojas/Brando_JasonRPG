@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Brando_Jason_RPGMapping.Entities;
-using Brando_Jason_RPGMapping.Mapping;
+using BrandoJason_RPGMapping.Mapping;
 
 namespace Brando_Jason_RPGMapping.GameRunning
 {

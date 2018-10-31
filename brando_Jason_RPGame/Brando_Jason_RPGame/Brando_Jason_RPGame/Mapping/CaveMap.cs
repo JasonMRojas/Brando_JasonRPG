@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Brando_Jason_RPGMapping.Entities;
 
-namespace Brando_Jason_RPGMapping.Mapping
+namespace BrandoJason_RPGMapping.Mapping
 {
     public class CaveMap : Map
     {

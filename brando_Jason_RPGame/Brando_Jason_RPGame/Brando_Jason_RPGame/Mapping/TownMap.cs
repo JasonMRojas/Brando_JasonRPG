@@ -4,7 +4,7 @@ using System.Text;
 using Brando_Jason_RPGMapping.Entities;
 using System.IO;
 
-namespace Brando_Jason_RPGMapping.Mapping
+namespace BrandoJason_RPGMapping.Mapping
 {
     public class TownMap : Map
     {
@@ -47,13 +47,17 @@ namespace Brando_Jason_RPGMapping.Mapping
                 townMapArrayArray[i] = new int[rowArray[i].Length];
                 for (int j = 0; j < rowArray[i].Length; j++)
                 {
-                    if (rowArray[i][j] == 'X')
+                    if (rowArray[i][j].ToString() == Wall.Display)
                     {
                         townMapArrayArray[i][j] = Wall.Value;
                     }
-                    else
+                    else if (rowArray[i][j].ToString() == Tile.Display)
                     {
                         townMapArrayArray[i][j] = Tile.Value;
+                    }
+                    else if (rowArray[i][j].ToString() == InnTile.Display)
+                    {
+                        townMapArrayArray[i][j] = InnTile.Value;
                     }
                 }
             }
