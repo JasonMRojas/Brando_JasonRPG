@@ -4,8 +4,8 @@
       "Name": "Slime",
       "CurrentHP": "3",
       "MaxHP": "3",
-      "CurrentMP": "0",
-      "MaxMP": "0",
+      "CurrentMP": "1",
+      "MaxMP": "1",
       "CurrentStamina": "3",
       "MaxStamina": "3",
       "Defense": "0",
@@ -17,7 +17,7 @@
       "Gold": "2",
       "Level": "1",
       "AbilityNames": [ "Wiggle" ],
-      "Lore": "A amalgamation of sludge, given life my magic causing it to become transparent and colored. Its mezmerizing form often can lure in children for it to eat; however, adults find themselves soothed by its movements."
+      "Lore": "A amalgamation of sludge, given life my magic causing it to become semi-transparent and colored. Its mezmerizing form often can lure in children for it to eat; however, adults find themselves soothed by its movements."
     },
     {
       "Name": "Ugly Goblin",

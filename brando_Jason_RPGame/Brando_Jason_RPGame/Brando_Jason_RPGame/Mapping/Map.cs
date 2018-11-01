@@ -136,13 +136,14 @@ namespace BrandoJason_RPGMapping.Mapping
         /// <param name="constructor"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        protected static bool IsSurrounded(int[][] mapMazeArray, ConstructorDrone constructor, int value)
+        protected bool IsSurrounded(int[][] mapMazeArray, ConstructorDrone constructor, int value)
         {
             return mapMazeArray[constructor.Position[0] + 1][constructor.Position[1]] == value
                                 && mapMazeArray[constructor.Position[0]][constructor.Position[1] + 1] == value
                                 && mapMazeArray[constructor.Position[0]][constructor.Position[1] - 1] == value
                                 && mapMazeArray[constructor.Position[0] - 1][constructor.Position[1]] == value;
         }
+
 
         /// <summary>
         /// Checks if a drone is next to a tile value
@@ -153,10 +154,7 @@ namespace BrandoJason_RPGMapping.Mapping
         /// <returns></returns>
         public bool IsNextTo(int[][] mapMazeArray, ConstructorDrone constructor, int value)
         {
-            return mapMazeArray[constructor.Position[0] + 1][constructor.Position[1]] == value
-                                || mapMazeArray[constructor.Position[0]][constructor.Position[1] + 1] == value
-                                || mapMazeArray[constructor.Position[0]][constructor.Position[1] - 1] == value
-                                || mapMazeArray[constructor.Position[0] - 1][constructor.Position[1]] == value;
+            return IsNextTo(mapMazeArray, constructor.Position, value);
         }
 
         public bool IsNextTo(int[][] mapMazeArray, int[] position, int value)

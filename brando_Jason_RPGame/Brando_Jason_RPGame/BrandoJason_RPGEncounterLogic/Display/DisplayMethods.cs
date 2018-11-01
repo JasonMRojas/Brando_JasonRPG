@@ -34,6 +34,11 @@ namespace BrandoJason_RPGEncounterLogic.Display
 
         public static void DisplayInformation(string prompt)
         {
+            Console.WriteLine(prompt);
+        }
+
+        public static void DisplayWrappedInformation(string prompt)
+        {
             WordWrap(prompt);
         }
 
@@ -87,7 +92,7 @@ namespace BrandoJason_RPGEncounterLogic.Display
             {
                 lines.Add(paragraph.Substring(0, Math.Min(Console.WindowWidth, paragraph.Length)));
                 var length = lines[i].LastIndexOf(" ", StringComparison.Ordinal);
-                if (length > 0)
+                if (length > 0 && lines[i][lines[i].Length - 1] != paragraph[paragraph.Length - 1])
                 {
                     lines[i] = lines[i].Remove(length);
                 }

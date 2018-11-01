@@ -299,7 +299,7 @@ namespace BrandoJason_RPGEncounterLogic.Character
                 $"The {monster.Name} steps back... probably"
             };
             DisplayMethods.DisplayInformation(prompts);
-            System.Threading.Thread.Sleep(1000);
+            DisplayMethods.DisplayInformation("Press any key to continue...", true);
         }
 
         /*public void UseInn()
@@ -317,8 +317,8 @@ namespace BrandoJason_RPGEncounterLogic.Character
 
             }
             */
-        }
     }
 }
+
 
 

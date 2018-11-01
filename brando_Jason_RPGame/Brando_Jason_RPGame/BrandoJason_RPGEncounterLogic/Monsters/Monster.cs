@@ -30,6 +30,8 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
         public string Lore { get; set; }
         public List<Ability> MonsterAbilities { get; set; }
         private Ability AbilityToUse { get; set; }
+        private bool IsDefend { get; set; }
+        private int DefendTurnCount { get; set; }
 
 
 
@@ -119,30 +121,57 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
                     Defend(player);
                 }
             }
+            if (this.IsDefend)
+            {
+                this.DefendTurnCount++;
+            }
+
+            if (this.DefendTurnCount > 1)
+            {
+                this.Defense -= (int)(this.Level * 1.5);
+                this.MagDefense -= (int)(this.Level * 1.5);
+                this.IsDefend = false;
+                this.DefendTurnCount = 0;
+            }
         }
 
         private void Defend(PlayerCharacter player)
         {
-            throw new NotImplementedException();
+            List<string> prompts = new List<string>()
+                {
+                    $"The {this.Name} hunkered down and guarded",
+                    $"The {this.Name} restored 1 stamina and gained {(int)(this.Level * 1.5)} defense and {(int)(this.Level * 1.5)} magic defense for the next turn"
+                };
+            if (this.CurrentStamina + 1 <= this.MaxStamina)
+            {
+                this.CurrentStamina++;
+            }
+            else
+            {
+                this.CurrentStamina = this.MaxStamina;
+            }
+
+            this.Defense += (int)(this.Level * 1.5);
+            this.MagDefense += (int)(this.Level * 1.5);
+            this.IsDefend = true;
+
+            DisplayMethods.DisplayInformation(prompts);
+            DisplayMethods.DisplayInformation("Press any key to continue...", true);
         }
 
         private void UseAbility(PlayerCharacter player)
         {
-            if (this.AbilityToUse.IsAttack)
-            {
-                int physicalDealtDamage = (this.AbilityToUse.Attack + this.Attack) - player.Defense;
-                int magicalDealtDamage = (this.AbilityToUse.MagAttack + this.MagAttack) - player.MagDefense;
-
-                List<string> prompts = new List<string>()
+            List<string> prompts = new List<string>()
                 {
                     $"The {this.Name} used {this.AbilityToUse.Name}",
                     $"The {this.Name} {this.AbilityToUse.Dialog}"
                 };
+            if (this.AbilityToUse.IsAttack && this.CurrentMP > 0)
+            {
+                int physicalDealtDamage = (this.AbilityToUse.Attack + this.Attack) - player.Defense;
+                int magicalDealtDamage = (this.AbilityToUse.MagAttack + this.MagAttack) - player.MagDefense;
 
-                if (this.AbilityToUse.Attack < 0)
-                {
 
-                }
                 if (physicalDealtDamage > 0)
                 {
                     prompts.Add($"The {this.Name} dealt {physicalDealtDamage} physical damage");
@@ -157,7 +186,7 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
 
                 if (this.AbilityToUse.HP > 0)
                 {
-                    prompts.Add($"It healed you {this.AbilityToUse.HP} HP");
+                    prompts.Add($"The {this.Name} healed you {this.AbilityToUse.HP} HP");
                     if (player.CurrentHP + this.AbilityToUse.HP <= player.MaxHP)
                     {
                         player.CurrentHP += this.AbilityToUse.HP;
@@ -167,11 +196,123 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
                         player.CurrentHP = player.MaxHP;
                     }
                 }
+                this.CurrentMP -= this.AbilityToUse.MP;
             }
             else
             {
+                if (this.AbilityToUse.HP != 0)
+                {
+                    prompts.Add($"The {this.Name} {VerbForStatus(this.AbilityToUse.HP)} its health for {this.AbilityToUse.HP}");
+                }
+                if (this.AbilityToUse.MP != 0)
+                {
+                    prompts.Add($"The {this.Name} {VerbForStatus(this.AbilityToUse.MP)} its mana for {this.AbilityToUse.MP}");
+                }
+                if (this.AbilityToUse.Stamina != 0)
+                {
+                    prompts.Add($"The {this.Name} {VerbForStatus(this.AbilityToUse.Stamina)} its stamina for {this.AbilityToUse.Stamina}");
+                }
+                if (this.AbilityToUse.Attack != 0)
+                {
+                    prompts.Add($"The {this.Name} {VerbForCombat(this.AbilityToUse.Attack)} its attack by {this.AbilityToUse.Attack}");
+                }
+                if (this.AbilityToUse.Defense != 0)
+                {
+                    prompts.Add($"The {this.Name} {VerbForCombat(this.AbilityToUse.Defense)} its defense by {this.AbilityToUse.Defense}");
+                }
+                if (this.AbilityToUse.MagAttack != 0)
+                {
+                    prompts.Add($"The {this.Name} {VerbForCombat(this.AbilityToUse.MagAttack)} its magic attack by {this.AbilityToUse.MagAttack}");
+                }
+                if (this.AbilityToUse.MagAttack != 0)
+                {
+                    prompts.Add($"The {this.Name} {VerbForCombat(this.AbilityToUse.MagDefense)} its magic defense by {this.AbilityToUse.MagDefense}");
+                }
 
+                if (this.CurrentHP + this.AbilityToUse.HP <= this.MaxHP)
+                {
+                    this.CurrentHP += this.AbilityToUse.HP;
+                }
+                else
+                {
+                    this.CurrentHP = this.MaxHP;
+                }
+
+                if (this.CurrentMP + this.AbilityToUse.MP <= this.MaxMP)
+                {
+                    this.CurrentMP += this.AbilityToUse.MP;
+                }
+                else
+                {
+                    this.CurrentMP = this.MaxMP;
+                }
+
+                if (this.CurrentStamina + this.AbilityToUse.Stamina <= this.MaxStamina)
+                {
+                    this.CurrentStamina += this.AbilityToUse.Stamina;
+                }
+                else
+                {
+                    this.CurrentStamina = this.MaxStamina;
+                }
+
+                this.Attack += this.AbilityToUse.Attack;
+                this.Defense += this.AbilityToUse.Defense;
+                this.MagAttack += this.AbilityToUse.MagAttack;
+                this.MagDefense += this.AbilityToUse.MagDefense;
             }
+
+            DisplayMethods.DisplayInformation(prompts);
+            DisplayMethods.DisplayInformation("Press any key to continue...", true);
+        }
+
+        public void DisplayStatus()
+        {
+            List<string> prompts = new List<string>
+            {
+                "Name: " + this.Name,
+                "Level: " + this.Level,
+                "Health: " + this.CurrentHP + " | " + this.MaxHP,
+                "Mana: " + this.CurrentMP + " | " + this.MaxMP,
+                "Stamina: " + this.CurrentStamina + " | " + this.MaxStamina,
+                "Attack: " + this.Attack,
+                "Defense: " + this.Defense,
+                "Magic Attack: " + this.MagAttack,
+                "Magic Defense: " + this.MagDefense,
+                "Luck: " + this.Luck,
+                "Experience Value: " + this.Exp + "xp",
+                "Gold: " + this.Gold
+            };
+            foreach (string name in AbilityNames)
+            {
+                prompts.Add($"Ability: {name}");
+            }
+            DisplayMethods.DisplayInformation(prompts);
+            DisplayMethods.DisplayWrappedInformation($"Lore: {this.Lore}");
+            DisplayMethods.DisplayInformation("Press any key to continue...", true);
+
+        }
+
+        private string VerbForCombat(int amount)
+        {
+            string verbForCombat = "increased";
+            if (amount < 0)
+            {
+                verbForCombat = "decreased";
+            }
+
+            return verbForCombat;
+        }
+        private string VerbForStatus(int amount)
+        {
+            string verbForStatus = "restored";
+
+            if (amount < 0)
+            {
+                verbForStatus = "lowered";
+            }
+
+            return verbForStatus;
         }
 
         private void AttackPlayer(PlayerCharacter player)
@@ -190,7 +331,7 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
             };
 
             DisplayMethods.DisplayInformation(prompts);
-            System.Threading.Thread.Sleep(1000);
+            DisplayMethods.DisplayInformation("Press any key to continue...", true);
         }
     }
 }

@@ -29,7 +29,7 @@ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 X           XW  S  AX        XXXX
 X           X       X          NX
 X           X       X    X   XXXX
-X	 N	N	   I                X
+X   N   N      I                X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 5
 XXXXXXXXX

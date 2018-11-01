@@ -39,11 +39,14 @@ namespace Brando_Jason_RPGMapping.GameRunning
 
         public static int[] StartingPostion(Map map, Tile mapTile)
         {
-            int[] returnedInt = new int[2];             
+            int[] toReturnPosition = new int[2];             
 
-            bool tilePlaced = false;
-            do
+            while(true)
             {
+                // I is the Rows
+                // J is the Cols
+
+                // Pick some random spaces within the play bounds area (ignoring the outer wall)
                 Random random = new Random();
                 int randomSeedI = random.Next(2, map.MapArrayOfArrays.Length - 2);
                 int randomSeedJ = random.Next(2, map.MapArrayOfArrays[map.MapArrayOfArrays.Length - 2].Length - 2);
@@ -67,11 +70,18 @@ namespace Brando_Jason_RPGMapping.GameRunning
                         southOfCurrentPosition[0] = i - 1;
                         southOfCurrentPosition[1] = j;
                         
-                        if (map.MapArrayOfArrays[i][j] == 0 && !map.IsSurrounded(map.MapArrayOfArrays, currentPosition, Wall.Value)
-                            && !map.IsNextTo(map.MapArrayOfArrays, rightOfCurrentPosition, Wall.Value))
+                        if (
+                            // Make sure this spot is empty (so we can even place a tile here)
+                            map.MapArrayOfArrays[i][j] == 0 
+                            // Make sure that this potential "door" tile has at least one entry point free of walls 
+                            && !map.IsSurrounded(map.MapArrayOfArrays, currentPosition, Wall.Value)
+                            // Make sure that the exit (space to the right) of this potential "door" tile has open spaces to move after player exits the door
+                            && !map.IsNextTo(map.MapArrayOfArrays, rightOfCurrentPosition, Wall.Value)
+                        )
                         {
-                            returnedInt[0] = i;
-                            returnedInt[1] = j;
+                            toReturnPosition[0] = i;
+                            toReturnPosition[1] = j;
+                            // Ensure that all towns and caves are at least two tiles apart
                             if (!map.IsNextTo(map.MapArrayOfArrays, currentPosition, TownMapTile.Value) 
                                 && !map.IsNextTo(map.MapArrayOfArrays, currentPosition, CaveTile.Value)
                                 && !map.IsNextTo(map.MapArrayOfArrays, rightOfCurrentPosition, TownMapTile.Value)
@@ -81,23 +91,17 @@ namespace Brando_Jason_RPGMapping.GameRunning
                                 && !map.IsNextTo(map.MapArrayOfArrays, northOfCurrentPosition, TownMapTile.Value)
                                 && !map.IsNextTo(map.MapArrayOfArrays, northOfCurrentPosition, CaveTile.Value)
                                 && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, TownMapTile.Value)
-                                && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, CaveTile.Value)
-                                && map.MapArrayOfArrays[i][j] != CaveTile.Value
-                                && map.MapArrayOfArrays[i][j] != TownMapTile.Value)
+                                && !map.IsNextTo(map.MapArrayOfArrays, southOfCurrentPosition, CaveTile.Value))
                             {
-                                tilePlaced = true;
-                                break;
+                                // break;
+                                return new int[] { i, j };
                             }
                         }
                     }
-                    if (i == returnedInt[0])
-                    {
-                        break;
-                    }
                 }
-            } while (!tilePlaced);
+            }
 
-            return returnedInt;
+            return toReturnPosition;
         }
 
         public static int[] StartingPostion(Map map, ICharacter droneToPlace)

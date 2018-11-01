@@ -49,17 +49,18 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                     $"(1) Attack the {newMonster.Name}",
                     $"(2) Use a Spell on the {newMonster.Name}",
                     $"(R) Attempt to run away based on Luck Stat",
+                    $"(I) Inspect the monster (Costs a turn)",
                     "",
                     "",
                     $"{player.Name} | HP: {player.CurrentHP} | MP: {player.CurrentMP} | Stam: {player.CurrentStamina}",
-                    "Player Input (1, 2, R):"
+                    "Player Input (1, 2, R, I):"
                 };
                 while (true)
                 {
                     input = DisplayMethods.DisplayInformation(prompts, true);
                     input = input.Substring(0, 1);
                     input = input.ToUpper();
-                    if (input == "1" || input == "2" || input == "R")
+                    if (input == "1" || input == "2" || input == "R" || input == "I")
                     {
                         break;
                     }
@@ -111,6 +112,7 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                                 {
                                     if (player.CurrentMP >= player.Spells[int.Parse(magicInput) - 1].MpCost)
                                     {
+                                        Console.Clear();
                                         player.MagicalAttack(newMonster, player.Spells[int.Parse(magicInput) - 1].Name);
                                     }
                                     else
@@ -118,9 +120,9 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                                         doAttack = false;
                                         DisplayMethods.DisplayInformation("You do not have enough mana!!!");
                                         DisplayMethods.DisplayInformation("Press enter to continue...", true);
+                                        Console.Clear();
                                     }
                                 }
-                                Console.Clear();
                             }
                             break;
                         }
@@ -136,6 +138,13 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                             DisplayMethods.DisplayInformation("Failed to get away!!!");
                         }
                         break;
+                    case "I":
+                        {
+                            newMonster.DisplayStatus();
+                            DisplayMethods.DisplayInformation("Press Any key To Continue");
+                            Console.Clear();
+                            break;
+                        }
                 }
 
                 if (restartMenu)
@@ -154,7 +163,7 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                 DisplayMethods.DisplayInformation("");
                 if (winState)
                 {
-                    DisplayMethods.DisplayInformation($"Beat {newMonster.Name} Yay.");
+                    DisplayMethods.DisplayInformation($"The {newMonster.Name} has finally fallen... What a challenge.");
                     player.AwardExp(newMonster.Exp);
                     Console.Clear();
                     song.Stop();
@@ -162,7 +171,6 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
                     break;
                 }
                 newMonster.Act(player);
-                DisplayMethods.DisplayInformation("Press Enter to Continue...", true);
                 Console.Clear();
 
                 loseState = player.CurrentHP <= 0;
@@ -171,14 +179,13 @@ namespace BrandoJason_RPGEncounterLogic.Encounter
 
                 if (loseState)
                 {
-                    DisplayMethods.DisplayInformation("You lose");
+                    DisplayMethods.DisplayInformation($"{player.Name} has died horribly at the hands of the mighty {newMonster.Name}...");
+                    DisplayMethods.DisplayInformation("Press any key to end...", true);
                     song.Stop();
                     break;
                 }
                 prompts.Clear();
             }
-            DisplayMethods.DisplayInformation("Encounter Finished");
-            DisplayMethods.DisplayInformation("Press Enter to Continue...", true);
             song.Stop();
         }
     }

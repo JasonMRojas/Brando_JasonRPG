@@ -119,23 +119,33 @@ namespace Brando_Jason_RPGMapping.Entities
 
         private void DoPlayerTrackingMovement(Map map, int[] playerPosition)
         {
-            if (Math.Abs(playerPosition[0] - this.Position[0]) > Math.Abs(playerPosition[1] - this.Position[1])
-                                && ((map.MapArrayOfArrays[Position[0] - 1][Position[1]] != Wall.Value
-                                && map.MapArrayOfArrays[Position[0] - 1][Position[1]] != ExitTile.Value)
-                                || (map.MapArrayOfArrays[Position[0] + 1][Position[1]] != Wall.Value
-                                && map.MapArrayOfArrays[Position[0] + 1][Position[1]] != ExitTile.Value)))
+            if (
+                // Closer by vertical than horizontal (should move vertically)
+                Math.Abs(playerPosition[0] - this.Position[0]) > Math.Abs(playerPosition[1] - this.Position[1])
+                    && (
+                            // Can move vertically
+                            (
+                                map.MapArrayOfArrays[Position[0] - 1][Position[1]] != Wall.Value 
+                                && map.MapArrayOfArrays[Position[0] - 1][Position[1]] != ExitTile.Value
+                            )
+                            || 
+                            (
+                                map.MapArrayOfArrays[Position[0] + 1][Position[1]] != Wall.Value
+                                && map.MapArrayOfArrays[Position[0] + 1][Position[1]] != ExitTile.Value)
+                            )
+                        )
             {
                 if (playerPosition[0] - this.Position[0] < 1 && StuckCount <= 2)
                 {
                     if (map.MapArrayOfArrays[Position[0] - 1][Position[1]] != Wall.Value
-                    && map.MapArrayOfArrays[Position[0] - 1][Position[1]] != ExitTile.Value)
+                        && map.MapArrayOfArrays[Position[0] - 1][Position[1]] != ExitTile.Value)
                     {
                         this.Position[0]--;
                     }
                     else if (playerPosition[1] - this.Position[1] < 1)
                     {
                         if (map.MapArrayOfArrays[Position[0]][Position[1] - 1] != Wall.Value
-                    && map.MapArrayOfArrays[Position[0]][Position[1] - 1] != ExitTile.Value)
+                            && map.MapArrayOfArrays[Position[0]][Position[1] - 1] != ExitTile.Value)
                         {
                             this.Position[1]--;
                         }

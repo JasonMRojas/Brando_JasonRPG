@@ -68,11 +68,11 @@ namespace Brando_Jason_RPGMapping.GameRunning
 
 
                 List<ICharacter> entityPile = new List<ICharacter>();
-                randomSeed = randomNumberSeed.Next(_currentLevel, _currentLevel * 3);
+                randomSeed = randomNumberSeed.Next(_currentLevel, _currentLevel * 5);
 
                 bool isTownMap = true;
                 bool isCaveMap = true;
-                while (isTownMap || isCaveMap)
+                while ((isTownMap || isCaveMap) && newMap)
                 {
                     newMap = RunWorldMap(encounter, player, map, specialTilePile, randomSeed, endTile, entityPile);
 
@@ -264,7 +264,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
             bool updateDisplay = false;
             bool gameOver = false;
 
-            int randomTick = randomMovement.Next(100, 200);
+            int randomTick = randomMovement.Next(40, 400 / _currentLevel);
             while (true)
             {
                 foreach (ICharacter entity in entityPile)
