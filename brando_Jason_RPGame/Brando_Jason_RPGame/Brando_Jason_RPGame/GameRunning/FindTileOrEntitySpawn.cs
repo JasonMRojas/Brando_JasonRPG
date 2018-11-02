@@ -101,7 +101,6 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 }
             }
 
-            return toReturnPosition;
         }
 
         public static int[] StartingPostion(Map map, ICharacter droneToPlace)
