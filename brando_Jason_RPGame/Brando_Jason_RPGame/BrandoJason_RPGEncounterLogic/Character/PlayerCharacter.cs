@@ -16,8 +16,10 @@ namespace BrandoJason_RPGEncounterLogic.Character
         public int CurrentStamina { get; set; }
         public int MaxStamina { get; set; }
         public int Defense { get; set; }
+        public int TempDef { get; set; }
         public int Attack { get; set; }
         public int MagDefense { get; set; }
+        public int TempMagDef { get; set; }
         public int MagAttack { get; set; }
         public int Luck { get; set; }
         public int Exp { get; private set; }
@@ -244,6 +246,29 @@ namespace BrandoJason_RPGEncounterLogic.Character
             Spells.Add(spell);
         }
 
+        private void Defend(PlayerCharacter player)
+        {
+            List<string> prompts = new List<string>()
+                {
+                    $"You hunkered down and guarded",
+                    $"You restored 1 stamina and gained {(int)(this.Defense * 1.1)} defense and {(int)(this.Defense * 1.1)} magic defense for the next turn"
+                };
+            if (this.CurrentStamina + 1 <= this.MaxStamina)
+            {
+                this.CurrentStamina++;
+            }
+            else
+            {
+                this.CurrentStamina = this.MaxStamina;
+            }
+
+            this.TempDef += (int)(this.Defense * 1.1 - this.Defense);
+            
+            this.TempMagDef += (int)(this.MagDefense * 1.1 - this.MagDefense);
+            
+            DisplayMethods.DisplayInformation(prompts);
+            DisplayMethods.DisplayInformation("Press any key to continue...", true);
+        }
         public void PhysicalAttack(Monster monster)
         {
             this.CurrentStamina -= 1;

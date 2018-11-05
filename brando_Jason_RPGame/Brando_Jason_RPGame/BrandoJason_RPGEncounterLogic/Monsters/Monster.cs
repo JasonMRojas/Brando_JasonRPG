@@ -68,7 +68,7 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
                             {
                                 this.AbilityToUse = ability;
                                 this.CurrentMP = this.CurrentMP - ability.MPcost;
-
+                                this.CurrentStamina -= 1;
 
                                 break;
                             }
@@ -169,10 +169,10 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
                     $"The {this.Name} used {this.AbilityToUse.Name}",
                     $"The {this.Name} {this.AbilityToUse.Dialog}"
                 };
-            if (this.AbilityToUse.IsAttack && this.CurrentMP > 0)
+            if (this.AbilityToUse.IsAttack && this.CurrentMP > 0 && this.CurrentStamina > 0)
             {
-                int physicalDealtDamage = (this.AbilityToUse.Attack + this.Attack) - player.Defense;
-                int magicalDealtDamage = (this.AbilityToUse.MagAttack + this.MagAttack) - player.MagDefense;
+                int physicalDealtDamage = (this.AbilityToUse.Attack + this.Attack) - player.Defense + player.TempDef;
+                int magicalDealtDamage = (this.AbilityToUse.MagAttack + this.MagAttack) - player.MagDefense + player.TempMagDef;
 
 
                 if (physicalDealtDamage > 0)
@@ -320,7 +320,7 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
 
         private void AttackPlayer(PlayerCharacter player)
         {
-            int dealtDamage = this.Attack - player.Defense;
+            int dealtDamage = this.Attack - player.Defense + player.TempDef;
             if (dealtDamage < 0)
             {
                 dealtDamage = 0;
@@ -328,9 +328,8 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
             player.CurrentHP -= dealtDamage;
             List<string> prompts = new List<string>()
             {
-                $"The {this.Name} Attacked!!!",
+                $"The {this.Name} attacked!!!",
                 $"It dealt {dealtDamage} dmg!!!",
-                $"Wow such spoop"
             };
 
             DisplayMethods.DisplayInformation(prompts);
