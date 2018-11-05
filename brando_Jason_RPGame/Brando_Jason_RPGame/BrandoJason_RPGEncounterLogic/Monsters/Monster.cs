@@ -67,6 +67,9 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
                             if (player.CurrentHP - (this.MagAttack + ability.MagAttack) < 1 || player.CurrentHP - (this.Attack + ability.Attack) < 1)
                             {
                                 this.AbilityToUse = ability;
+                                this.CurrentMP = this.CurrentMP - ability.MPcost;
+
+
                                 break;
                             }
                             else if (rand.Next(1, 101) > 100 - ability.Chance)

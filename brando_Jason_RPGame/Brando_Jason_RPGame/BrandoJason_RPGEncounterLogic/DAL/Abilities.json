@@ -41,7 +41,7 @@
     },
     {
       "Name": "Rain",
-      "Dialog": "gushes a storm of rain at you",
+      "Dialog": "gushes a storm of rain at you!",
       "HP": 0,
       "MP": 2,
       "Attack": 0,
@@ -50,6 +50,129 @@
       "MagDefense": 0,
       "IsAttack": true,
       "Chance": 20
+    },
+    {
+      "Name": "Peck",
+      "Dialog": "goes straight for your eyes!",
+      "HP": 2,
+      "MP": 0,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 20
+    },
+    {
+      "Name": "Lucky Nimbus",
+      "Dialog": "hops around in the sunlight.",
+      "HP": 0,
+      "MP": 0,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "Luck": 5,
+      "IsAttack": false,
+      "Chance": 50
+    },
+    {
+      "Name": "Slam",
+      "Dialog": "stars to jiggle madly, then leaps up!",
+      "HP": 4,
+      "MP": 0,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "Luck": 0,
+      "IsAttack": true,
+      "Chance": 5
+    },
+    {
+      "Name": "Gulp",
+      "Dialog": "it gulps you whole, you feel yourself draining as you wade out through the slime's jello-like belly.",
+      "HP": 0,
+      "MP": -4,
+      "Attack": 0,
+      "Defense": -1,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "Luck": 0,
+      "IsAttack": false,
+      "Chance": 25
+    },
+    {
+      "Name": "Mega-Wiggle",
+      "Dialog": "wiggles methodically... its hypnotizing... You Have Been Healed???",
+      "HP": 2,
+      "MP": 2,
+      "Stamina": 2,
+      "Attack": 0,
+      "Defense": -1,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 10
+    },
+    {
+      "Name": "Chomp",
+      "Dialog": "chomps down on you!",
+      "HP": 0,
+      "MP": 0,
+      "MPcost": 5,
+      "Stamina": 0,
+      "Attack": 3,
+      "Defense": 0,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 50
+    },
+    {
+      "Name": "Fire",
+      "Dialog": "ignites you ablaze!",
+      "HP": 0,
+      "MP": 0,
+      "MPcost": 5,
+      "Stamina": 0,
+      "Attack": 0,
+      "Defense": 0,
+      "MagAttack": 3,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 50
+    },
+    {
+      "Name": "Ice",
+      "Dialog": "chomps down on you!",
+      "HP": 0,
+      "MP": 0,
+      "MPcost": 5,
+      "Stamina": 0,
+      "Attack": 3,
+      "Defense": 0,
+      "MagAttack": 3,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 50
+    },
+    {
+      "Name": "Womp",
+      "Dialog": "womps down on you!",
+      "HP": 0,
+      "MP": 0,
+      "MPcost": 0,
+      "Stamina": 0,
+      "Attack": 3,
+      "Defense": 0,
+      "MagAttack": 0,
+      "MagDefense": 0,
+      "IsAttack": true,
+      "Chance": 10
+    },
+    {
+
     }
   ]
 }

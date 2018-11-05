@@ -297,7 +297,7 @@
     "StyleCop/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uyhpJFORMpB32ChaMyX+5FqUrOaiB1K2SZfpUBm7T+7EYifURKk3Ho+J3Kcpwjh5OOzn9Ok+JAxRIq0gu5+i1A==",
+      "sha512": "sha512-mqXb5feeDGKasHDr17ZBDvrbw2GmPtmW6er33KitvTGaE8mQcAYHQohvLWR1yPSYHdVQAyByi6Ao+JPtYD8Mew==",
       "path": "stylecop/5.0.0",
       "hashPath": "stylecop.5.0.0.nupkg.sha512"
     },
