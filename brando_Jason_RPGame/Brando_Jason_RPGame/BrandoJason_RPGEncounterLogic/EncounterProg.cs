@@ -1,10 +1,6 @@
 ﻿using System;
 using BrandoJason_RPGEncounterLogic.Character;
-using System.Data.SqlClient;
-using System.Data;
-using BrandoJason_RPGEncounterLogic.DAL;
 using BrandoJason_RPGEncounterLogic.Encounter;
-using CSCore.CoreAudioAPI;
 using BrandoJason_RPGEncounterLogic.Sound;
 using BrandoJason_RPGEncounterLogic.Display;
 using System.Collections.Generic;
