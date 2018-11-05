@@ -25,3 +25,6 @@ C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brand
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\obj\Debug\netcoreapp2.1\BrandoJason_RPGEncounterLogic.pdb
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\bin\Debug\netcoreapp2.1\Intro.wav
 C:\Users\Jason Rojas\source\repos\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\bin\Debug\netcoreapp2.1\DAL\Abilities.json
+C:\Users\Brandon Batel\Documents\Game Project JR\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\bin\Debug\netcoreapp2.1\DAL\Abilities.json
+C:\Users\Brandon Batel\Documents\Game Project JR\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\bin\Debug\netcoreapp2.1\DAL\Monsters.json
+C:\Users\Brandon Batel\Documents\Game Project JR\brando_jason_rpggame\brando_Jason_RPGame\Brando_Jason_RPGame\BrandoJason_RPGEncounterLogic\bin\Debug\netcoreapp2.1\Intro.wav
