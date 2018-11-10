@@ -5,12 +5,15 @@ using Brando_Jason_RPGMapping.Entities;
 using BrandoJason_RPGMapping.Mapping;
 using BrandoJason_RPGEncounterLogic;
 using BrandoJason_RPGEncounterLogic.Sound;
+using BrandoJason_RPGMapping.Entities;
 
 namespace Brando_Jason_RPGMapping.GameRunning
 {
     public class MapGame
     {
+        bool placeBoss = false;
         int _currentLevel = 1;
+        int _bossSeed = 1;
 
         /// <summary>
         /// Runs the logic around the game loop
@@ -140,10 +143,46 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 monster.Position = FindTileOrEntitySpawn.StartingPostion(map, monster);
                 entityPile.Add(monster);
             }
+            if (map.GetType() == typeof(CaveMap))
+            {
+                BossToken boss = new BossToken();
+                boss.Position = FindTileOrEntitySpawn.StartingPostion(map, boss);
+                entityPile.Add(boss);
+            }
             foreach (ICharacter entity in entityPile)
             {
                 map.SetEntityPosition(entity);
             }
+
+        }
+
+        private static void AddEntitiesAndTilesToMap(Map map, List<Tile> specialTilePile, int randomSeed, List<ICharacter> entityPile, bool placeBoss)
+        {
+            foreach (Tile tile in specialTilePile)
+            {
+                if (tile.GetType() != typeof(ExitTile) && tile.Position == null)
+                {
+                    tile.Position = FindTileOrEntitySpawn.StartingPostion(map, tile);
+                }
+                map.SetTilePosition(tile.Position, tile.InstanValue);
+            }
+            for (int i = 0; i < randomSeed; i++)
+            {
+                NormalMonster monster = new NormalMonster();
+                monster.Position = FindTileOrEntitySpawn.StartingPostion(map, monster);
+                entityPile.Add(monster);
+            }
+            if (map.GetType() == typeof(CaveMap) && placeBoss)
+            {
+                BossToken boss = new BossToken();
+                boss.Position = FindTileOrEntitySpawn.StartingPostion(map, boss);
+                entityPile.Add(boss);
+            }
+            foreach (ICharacter entity in entityPile)
+            {
+                map.SetEntityPosition(entity);
+            }
+
         }
 
         private static void AddEntitiesAndTilesToMap(Map map, List<Tile> specialTilePile, List<ICharacter> entityPile)
@@ -182,9 +221,18 @@ namespace Brando_Jason_RPGMapping.GameRunning
                 endTile
             };
 
-
             caveMapStorage[tile.AssociationNum].BuildMapDisplay();
-            AddEntitiesAndTilesToMap(caveMapStorage[tile.AssociationNum], caveSpecialTilePile, randomEnemySeed, entityCavePile);
+
+            if (tile.AssociationNum == 1 && (_currentLevel == _bossSeed))
+            {
+                placeBoss = true;
+                AddEntitiesAndTilesToMap(caveMapStorage[tile.AssociationNum], caveSpecialTilePile, randomEnemySeed, entityCavePile, placeBoss);
+            }
+            else
+            {
+                AddEntitiesAndTilesToMap(caveMapStorage[tile.AssociationNum], caveSpecialTilePile, randomEnemySeed, entityCavePile);
+            }
+
             bool nextMap = RunMapGameLoop(caveMapStorage[tile.AssociationNum], entityCavePile, caveSpecialTilePile, encounter);
             ClearMap(caveMapStorage[tile.AssociationNum], entityCavePile);
 
@@ -192,6 +240,7 @@ namespace Brando_Jason_RPGMapping.GameRunning
             player.Position[0] = tile.Position[0];
             player.Position[1] = tile.Position[1] + 1;
 
+            placeBoss = false;
             return nextMap;
         }
 
@@ -310,8 +359,14 @@ namespace Brando_Jason_RPGMapping.GameRunning
                             map.BuildMapDisplay();
                             Display_Map.DisplayMap(map);
 
-                            gameOver = encounter.RunEncounterProg(_currentLevel);
-
+                            if (npc.GetType() == typeof(BossToken))
+                            {
+                                gameOver = encounter.RunEncounterProg(_currentLevel, _bossSeed);
+                            }
+                            else
+                            {
+                                gameOver = encounter.RunEncounterProg(_currentLevel);
+                            }
                             isOver = gameOver;
 
                             toRemove = npc;

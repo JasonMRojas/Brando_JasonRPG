@@ -289,13 +289,9 @@ namespace BrandoJason_RPGMapping.Mapping
                     {
                         mapDisplay += "D";
                     }
-                    else if (row[j] == -4)
+                    else if (row[j] == 10)
                     {
-                        mapDisplay += "G";
-                    }
-                    else if (row[j] == -5)
-                    {
-                        mapDisplay += "H";
+                        mapDisplay += "B";
                     }
                     else if (row[j] == CaveTile.Value)
                     {
@@ -317,7 +313,6 @@ namespace BrandoJason_RPGMapping.Mapping
                     {
                         mapDisplay += InnTile.Display;
                     }
-
                 }
                 mapDisplay += "\n\r";
             }

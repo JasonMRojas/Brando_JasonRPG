@@ -59,7 +59,8 @@ namespace BrandoJason_RPGEncounterLogic
             return Player.CurrentHP <= 0;
         }
 
-        public bool RunEncounterProg(bool isBoss, int currentLevel)
+
+        public bool RunEncounterProg(int currentLevel, int bossSeed)
         {
             EncounterRunning newEnounter = new EncounterRunning();
 

@@ -11,68 +11,6 @@ namespace BrandoJason_RPGMapping.Mapping
             Console.CursorVisible = false;
             Console.SetCursorPosition(0, 0); //Basically works as buffering
             Console.CursorVisible = false;
-            //for (int i = 0; i < rowArray.Length; i++)
-            //{
-            //    string row = rowArray[i];
-            //    for (int j = 0; j < row.Length;)
-            //    {
-            //        bool didThing = false;
-            //        if ((i == 0 || i == rowArray.Length - 1) || (!row.Contains('P') && !row.Contains('T') && !row.Contains('E') && !row.Contains('C') && !row.Contains('D')))
-            //        {
-            //            Console.Write(row);
-            //            break;
-            //        }
-            //        if (row[j] == 'P')
-            //        {
-            //            Console.ForegroundColor = ConsoleColor.Green;
-            //            Console.Write(row[j]);
-            //            row = row.Substring(row.IndexOf('P') + 1);
-            //            didThing = true;
-            //        }
-            //        else if (row[j] == 'T')
-            //        {
-            //            Console.ForegroundColor = ConsoleColor.Blue;
-            //            Console.Write(row[j]);
-            //            row = row.Substring(row.IndexOf('T') + 1);
-            //            didThing = true;
-            //        }
-            //        else if (row[j] == 'E')
-            //        {
-            //            Console.ForegroundColor = ConsoleColor.Cyan;
-            //            Console.Write(row[j]);
-            //            row = row.Substring(row.IndexOf('E') + 1);
-            //            didThing = true;
-            //        }
-            //        else if (row[j] == 'C')
-            //        {
-            //            Console.ForegroundColor = ConsoleColor.Magenta;
-            //            Console.Write(row[j]);
-            //            row = row.Substring(row.IndexOf('C') + 1);
-            //            didThing = true;
-            //        }
-            //        else if (row[j] == 'D')
-            //        {
-            //            Console.ForegroundColor = ConsoleColor.DarkRed;
-            //            Console.Write(row[j]);
-            //            row = row.Substring(row.IndexOf('D') + 1);
-            //            didThing = true;
-            //        }
-            //        else
-            //        {
-            //            Console.Write(row[j]);
-            //        }
-            //        Console.ResetColor();
-            //        j++;
-            //        if (didThing)
-            //        {
-            //            j = 0;
-            //        }
-            //    }
-            //    Console.WriteLine();
-
-            //}
-
-
             string strPrint = "";
             foreach (char character in map.Display)
             {
@@ -111,7 +49,7 @@ namespace BrandoJason_RPGMapping.Mapping
 
         private static bool CheckIfSpecial(char character)
         {
-            return character != 'P' && character != 'D' && character != 'C' && character != 'E' && character != 'T' && character != 'I';
+            return character != 'P' && character != 'D' && character != 'C' && character != 'E' && character != 'T' && character != 'I' && character != 'B';
         }
 
         private static void PlaceColoredCharacter(char character)
@@ -139,6 +77,11 @@ namespace BrandoJason_RPGMapping.Mapping
             else if (character == 'D')
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write(character);
+            }
+            else if (character == 'B')
+            {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write(character);
             }
             else if (character == 'I')

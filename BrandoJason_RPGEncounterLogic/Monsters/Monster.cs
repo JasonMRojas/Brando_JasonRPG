@@ -169,7 +169,7 @@ namespace BrandoJason_RPGEncounterLogic.Monsters
                     $"The {this.Name} used {this.AbilityToUse.Name}",
                     $"The {this.Name} {this.AbilityToUse.Dialog}"
                 };
-            if (this.AbilityToUse.IsAttack && this.CurrentMP > 0 && this.CurrentStamina > 0)
+            if (this.AbilityToUse.IsAttack)
             {
                 int physicalDealtDamage = (this.AbilityToUse.Attack + this.Attack) - player.Defense + player.TempDef;
                 int magicalDealtDamage = (this.AbilityToUse.MagAttack + this.MagAttack) - player.MagDefense + player.TempMagDef;
